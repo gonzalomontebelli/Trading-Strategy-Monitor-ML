@@ -1,0 +1,18 @@
+{
+  "case_id": "2026-04_Quantum_US30_SingleTrader",
+  "phase": "FASE 4A - CLEAN DATA RESTRINGIDA",
+  "input_file": "2026-04-02 18-45-49 History - Quantum_us30pepper (US30, m5, True, True, 0, 1, 61.5, 122.5, 9, 15, 7,).csv",
+  "raw_rows": 1823,
+  "raw_columns": 16,
+  "clean_rows": 1823,
+  "rejected_rows": 0,
+  "warn_rows": 1823,
+  "error_rows": 0,
+  "scope_rules": {
+    "trader_id_strategy": "surrogate_case_level",
+    "timezone_strategy": "parse_only_keep_raw_clock",
+    "timezone_conversion_applied": false,
+    "log_join_applied": false,
+    "balance_usage": "support_only_not_sequential_raw"
+  }
+}

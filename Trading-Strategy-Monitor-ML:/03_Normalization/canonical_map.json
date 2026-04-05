@@ -1,0 +1,170 @@
+{
+  "case_id": "2026-04_Quantum_US30_SingleTrader",
+  "phase": "FASE 2 - DISEÑO DE NORMALIZACIÓN",
+  "status": "ADVANCE_TO_PHASE_3_WITH_RESERVATIONS",
+  "canonical_schema_minimum": [
+    "trader_id",
+    "symbol",
+    "side",
+    "open_time",
+    "close_time",
+    "volume",
+    "entry_price",
+    "exit_price",
+    "pnl_net"
+  ],
+  "traceability_support_fields": [
+    "trade_id",
+    "strategy_label",
+    "pnl_gross",
+    "pips",
+    "balance_after_trade",
+    "broker_commission",
+    "swaps",
+    "volume_alt_raw"
+  ],
+  "field_map": {
+    "trader_id": {
+      "source_type": "derived_case_constant",
+      "source_column": null,
+      "value": "2026-04_Quantum_US30_SingleTrader",
+      "target_dtype": "string",
+      "required": true,
+      "rule": "Usar surrogate case-level solo para este caso single-trader.",
+      "quality_impact": "WARN"
+    },
+    "symbol": {
+      "source_type": "raw_column",
+      "source_column": "Symbol",
+      "target_dtype": "string",
+      "required": true,
+      "rule": "trim + uppercase",
+      "quality_impact": "ERROR_if_empty_or_unparseable"
+    },
+    "side": {
+      "source_type": "raw_column",
+      "source_column": "Type",
+      "target_dtype": "string",
+      "required": true,
+      "rule": {
+        "Buy": "BUY",
+        "Sell": "SELL"
+      },
+      "quality_impact": "ERROR_if_outside_domain"
+    },
+    "open_time": {
+      "source_type": "raw_column",
+      "source_column": "Entry time (UTC+1)",
+      "target_dtype": "datetime",
+      "required": true,
+      "rule": {
+        "parse_format": "%d/%m/%Y %H:%M:%S.%f",
+        "timezone_strategy": "parse_only_keep_raw_clock",
+        "timezone_status": "unvalidated_label"
+      },
+      "quality_impact": "WARN_until_timezone_semantics_validated"
+    },
+    "close_time": {
+      "source_type": "raw_column",
+      "source_column": "Closing time (UTC+1)",
+      "target_dtype": "datetime",
+      "required": true,
+      "rule": {
+        "parse_format": "%d/%m/%Y %H:%M:%S.%f",
+        "timezone_strategy": "parse_only_keep_raw_clock",
+        "timezone_status": "unvalidated_label",
+        "validation": "close_time >= open_time"
+      },
+      "quality_impact": "WARN_until_timezone_semantics_validated"
+    },
+    "volume": {
+      "source_type": "raw_column_with_crosscheck",
+      "source_column": "Quantity",
+      "crosscheck_column": "Volume",
+      "target_dtype": "decimal",
+      "required": true,
+      "rule": {
+        "extract_numeric_payload": true,
+        "primary_source": "Quantity",
+        "crosscheck": "normalized_numeric(Quantity) == normalized_numeric(Volume)"
+      },
+      "quality_impact": "ERROR_if_crosscheck_fails"
+    },
+    "entry_price": {
+      "source_type": "raw_column",
+      "source_column": "Entry price",
+      "target_dtype": "decimal",
+      "required": true,
+      "rule": "numeric_cast_direct",
+      "quality_impact": "ERROR_if_parse_fails"
+    },
+    "exit_price": {
+      "source_type": "raw_column",
+      "source_column": "Closing price",
+      "target_dtype": "decimal",
+      "required": true,
+      "rule": "numeric_cast_direct",
+      "quality_impact": "ERROR_if_parse_fails"
+    },
+    "pnl_net": {
+      "source_type": "raw_column",
+      "source_column": "Net $",
+      "target_dtype": "decimal",
+      "required": true,
+      "rule": "money_text_cleanup_then_numeric_cast",
+      "quality_impact": "ERROR_if_parse_fails"
+    }
+  },
+  "support_field_map": {
+    "trade_id": "ID",
+    "strategy_label": "Label",
+    "pnl_gross": "Gross $",
+    "pips": "Pips",
+    "balance_after_trade": "Balance $",
+    "broker_commission": "Broker commission",
+    "swaps": "Swaps",
+    "volume_alt_raw": "Volume"
+  },
+  "quality_flag": {
+    "OK": [
+      "all_minimum_fields_present_and_parseable",
+      "side_in_allowed_domain",
+      "close_time_gte_open_time",
+      "volume_crosscheck_passes",
+      "no_open_case_warnings_apply"
+    ],
+    "WARN": [
+      "row_usable_but_depends_on_case_level_surrogate_trader_id",
+      "row_usable_but_timezone_semantics_still_unvalidated"
+    ],
+    "ERROR": [
+      "missing_required_column",
+      "date_parse_failure",
+      "side_outside_domain",
+      "close_before_open",
+      "volume_crosscheck_failure",
+      "numeric_parse_failure",
+      "empty_or_unparseable_symbol"
+    ]
+  },
+  "open_blockers": [
+    {
+      "id": "AMB_001",
+      "topic": "trader_id missing at row level",
+      "severity": "high",
+      "status": "open"
+    },
+    {
+      "id": "AMB_002",
+      "topic": "time zone semantics",
+      "severity": "high",
+      "status": "open"
+    },
+    {
+      "id": "AMB_003",
+      "topic": "log join key",
+      "severity": "medium",
+      "status": "open"
+    }
+  ]
+}

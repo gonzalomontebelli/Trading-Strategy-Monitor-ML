@@ -1,0 +1,222 @@
+{
+  "case_id": "2026-04_Quantum_US30_SingleTrader",
+  "phase": "FASE 0 - SCHEMA DETECTIVE",
+  "dataset_scope": "single_trader_trade_history_simulation",
+  "source_files": [
+    {
+      "file_name": "2026-04-02 18-45-49 History - Quantum_us30pepper (US30, m5, True, True, 0, 1, 61.5, 122.5, 9, 15, 7,).csv",
+      "role": "primary_table",
+      "path": "01_Raw/2026-04-02 18-45-49 History - Quantum_us30pepper (US30, m5, True, True, 0, 1, 61.5, 122.5, 9, 15, 7,).csv"
+    },
+    {
+      "file_name": "log.txt",
+      "role": "secondary_support",
+      "path": "01_Raw/log.txt"
+    }
+  ],
+  "primary_table": {
+    "file_name": "2026-04-02 18-45-49 History - Quantum_us30pepper (US30, m5, True, True, 0, 1, 61.5, 122.5, 9, 15, 7,).csv",
+    "grain": "1 row = 1 closed trade",
+    "row_count": 1823,
+    "column_count": 16,
+    "sorted_by": "Entry time (UTC+1) ascending",
+    "time_span": {
+      "entry_min": "2019-08-01 14:50:43.720",
+      "entry_max": "2026-04-02 16:35:00.110",
+      "close_min": "2019-08-01 15:48:40.466",
+      "close_max": "2026-04-02 16:42:48.236"
+    }
+  },
+  "detected_entities": {
+    "symbols": [
+      "US30"
+    ],
+    "trade_types": [
+      "Buy",
+      "Sell"
+    ],
+    "labels": [
+      "LONDON_1B1S",
+      "RRL"
+    ]
+  },
+  "critical_fields_detected": {
+    "pnl_fields": [
+      "Net $",
+      "Gross $",
+      "Pips",
+      "Balance $"
+    ],
+    "time_fields": [
+      "Entry time (UTC+1)",
+      "Closing time (UTC+1)"
+    ],
+    "size_fields": [
+      "Quantity",
+      "Volume"
+    ],
+    "instrument_field": [
+      "Symbol"
+    ],
+    "trade_identifier_field": [
+      "ID"
+    ],
+    "trader_field": []
+  },
+  "column_equivalences_or_overlaps": [
+    {
+      "columns": [
+        "Quantity",
+        "Volume"
+      ],
+      "status": "overlap",
+      "validated": true,
+      "note": "Both encode size as text with different unit labels."
+    },
+    {
+      "columns": [
+        "Net $",
+        "Gross $"
+      ],
+      "status": "equivalent_in_current_export",
+      "validated": true,
+      "note": "They are identical in all observed rows because Broker commission and Swaps are zero."
+    }
+  ],
+  "secondary_embedded_tables": {
+    "OPEN_CSV": {
+      "data_rows_detected": 1823,
+      "columns": [
+        "event",
+        "tradingDay",
+        "label",
+        "tradeType",
+        "posId",
+        "bidAtSend",
+        "askAtSend",
+        "quoteMidAtSend",
+        "requestedPrice",
+        "expectedPrice",
+        "bidAtFill",
+        "askAtFill",
+        "fillPrice",
+        "slippagePts",
+        "slippageSigned",
+        "sendTimeUtc",
+        "fillTimeUtc",
+        "executionType",
+        "fillType",
+        "spreadAtSend",
+        "spreadAtFill",
+        "latencyMs",
+        "slPts",
+        "tpPts",
+        "risk$"
+      ]
+    },
+    "CLOSE_CSV": {
+      "data_rows_detected": 1823,
+      "columns": [
+        "event",
+        "tradingDay",
+        "label",
+        "tradeType",
+        "posId",
+        "closeReason",
+        "closeType",
+        "quoteMidAtCloseSend",
+        "expectedPrice",
+        "fillPrice",
+        "slippagePts",
+        "slippageSigned",
+        "bidAtCloseSend",
+        "askAtCloseSend",
+        "expectedClosePrice",
+        "fillClosePrice",
+        "closeSlippagePts",
+        "closeSlippageSigned",
+        "sendTimeUtc",
+        "fillTimeUtc",
+        "executionType",
+        "fillType",
+        "spreadAtEntry",
+        "spreadAtCloseSend",
+        "spreadAtCloseFill",
+        "maxSpreadDuringTrade",
+        "latencyMs",
+        "slPts",
+        "tpPts",
+        "risk$",
+        "resultR",
+        "durationMin",
+        "sessionTag",
+        "netProfit",
+        "grossProfit"
+      ]
+    },
+    "DAY_SUMMARY": {
+      "data_rows_detected": 924,
+      "columns": [
+        "event",
+        "tradingDay",
+        "openCount",
+        "closeCount",
+        "netProfit",
+        "grossProfit",
+        "avgSlippagePts",
+        "avgSlippageSigned",
+        "avgSpreadAtEntry",
+        "avgSpreadAtClose",
+        "avgLatencyMs"
+      ]
+    }
+  },
+  "structural_checks": {
+    "full_row_duplicates": 0,
+    "duplicate_ids": 0,
+    "empty_rows_detected": 0,
+    "header_repeats_detected": false,
+    "all_required_trade_level_close_fields_present": true,
+    "all_rows_have_close_timestamp": true
+  },
+  "format_findings": {
+    "date_format_detected": "%d/%m/%Y %H:%M:%S.%f",
+    "date_parse_success_entry": 1823,
+    "date_parse_success_close": 1823,
+    "close_before_open_violations": 0,
+    "money_fields_are_text": [
+      "Net $",
+      "Gross $",
+      "Balance $"
+    ],
+    "balance_contains_nbsp_thousands_separator": true,
+    "timezone_label_needs_caution": true
+  },
+  "ambiguities_and_risks": [
+    {
+      "id": "AMB_001",
+      "severity": "high",
+      "topic": "trader_id missing at row level",
+      "detail": "The file behaves as a single-trader dataset, but no explicit trader_id column exists inside the table."
+    },
+    {
+      "id": "AMB_002",
+      "severity": "high",
+      "topic": "time zone semantics",
+      "detail": "CSV timestamps are labeled UTC+1, while log also reports dynamic Madrid and NY local times; these cannot be treated as interchangeable."
+    },
+    {
+      "id": "AMB_003",
+      "severity": "medium",
+      "topic": "log join key",
+      "detail": "CSV field ID does not match log posId directly; enriching trades from log will require a validated join rule."
+    },
+    {
+      "id": "AMB_004",
+      "severity": "medium",
+      "topic": "filename metadata",
+      "detail": "The CSV filename encodes parameters, but their semantics are not formally documented inside the dataset."
+    }
+  ],
+  "phase0_decision": "ADVANCE_TO_PHASE_1_WITH_RESERVATIONS"
+}

@@ -1,0 +1,174 @@
+﻿04/04/2026 14:22:39.414 Info | 📌 Symbol: US30 | Digits=1 | PipSize=1 | TickSize=0.1 | Spread(pips)=2.0
+
+04/04/2026 14:22:39.414 Info | ⚠️ Validación TZ: Kind Unspecified (normal en conversión local). Se registra una sola vez.
+
+04/04/2026 14:22:39.414 Info | 📘 [OPEN_CSV] UTC=2026-04-04 14:22:39 | MAD=2026-04-04 16:22:39 | NY=2026-04-04 10:22:39 | event,tradingDay,label,tradeType,posId,bidAtSend,askAtSend,quoteMidAtSend,requestedPrice,expectedPrice,bidAtFill,askAtFill,fillPrice,slippagePts,slippageSigned,sendTimeUtc,fillTimeUtc,executionType,fillType,spreadAtSend,spreadAtFill,latencyMs,slPts,tpPts,risk$
+
+04/04/2026 14:22:39.414 Info | ✅ Bot iniciado.
+
+04/04/2026 14:22:39.414 Info | ✅ Cierre forzoso: 15:55 NY
+
+04/04/2026 14:22:39.414 Info | 📘 [DAY_SUMMARY] UTC=2026-04-04 14:22:39 | MAD=2026-04-04 16:22:39 | NY=2026-04-04 10:22:39 | event,tradingDay,openCount,closeCount,netProfit,grossProfit,avgSlippagePts,avgSlippageSigned,avgSpreadAtEntry,avgSpreadAtClose,avgLatencyMs
+
+04/04/2026 14:22:39.414 Info | ✅ Reconstruyendo estado desde historial...
+
+04/04/2026 14:22:39.414 Info | ⚠️ Se detectaron trades anteriores (34). Balance inicial estimado: 3869.30
+
+04/04/2026 14:22:39.414 Info | ✅ TZ Madrid: (UTC+01:00) Central European Time (Madrid) (Europe/Madrid)
+
+04/04/2026 14:22:39.414 Info | ✅ TZ NY: (UTC-05:00) Eastern Time (New York) (America/New_York)
+
+04/04/2026 14:22:39.414 Info | ✅ Server UTC: 2026-04-04 14:22:39
+
+04/04/2026 14:22:39.414 Info | ✅ Madrid: 2026-04-04 16:22:39 (Saturday)
+
+04/04/2026 14:22:39.414 Info | ✅ NY: 2026-04-04 10:22:39 (Saturday)
+
+04/04/2026 14:22:39.414 Info | 📘 [CLOSE_CSV] UTC=2026-04-04 14:22:39 | MAD=2026-04-04 16:22:39 | NY=2026-04-04 10:22:39 | event,tradingDay,label,tradeType,posId,closeReason,closeType,quoteMidAtCloseSend,expectedPrice,fillPrice,slippagePts,slippageSigned,bidAtCloseSend,askAtCloseSend,expectedClosePrice,fillClosePrice,closeSlippagePts,closeSlippageSigned,sendTimeUtc,fillTimeUtc,executionType,fillType,spreadAtEntry,spreadAtCloseSend,spreadAtCloseFill,maxSpreadDuringTrade,latencyMs,slPts,tpPts,risk$,resultR,durationMin,sessionTag,netProfit,grossProfit
+
+04/04/2026 14:22:39.414 Info | ⚠️ Recomendación: configurar 'Balance Inicial' para precisión absoluta.
+
+04/04/2026 14:22:33.407 Info | CBot instance [Quantum_us30pepper, US30, m5] started.
+
+04/04/2026 14:22:32.108 Starting cBot...
+
+04/04/2026 06:02:32.654 Info | 📘 [CLOSE_CSV] UTC=2026-04-04 06:02:32 | MAD=2026-04-04 08:02:32 | NY=2026-04-04 02:02:32 | event,tradingDay,label,tradeType,posId,closeReason,closeType,quoteMidAtCloseSend,expectedPrice,fillPrice,slippagePts,slippageSigned,bidAtCloseSend,askAtCloseSend,expectedClosePrice,fillClosePrice,closeSlippagePts,closeSlippageSigned,sendTimeUtc,fillTimeUtc,executionType,fillType,spreadAtEntry,spreadAtCloseSend,spreadAtCloseFill,maxSpreadDuringTrade,latencyMs,slPts,tpPts,risk$,resultR,durationMin,sessionTag,netProfit,grossProfit
+
+04/04/2026 06:02:32.654 Info | 📘 [DAY_SUMMARY] UTC=2026-04-04 06:02:32 | MAD=2026-04-04 08:02:32 | NY=2026-04-04 02:02:32 | event,tradingDay,openCount,closeCount,netProfit,grossProfit,avgSlippagePts,avgSlippageSigned,avgSpreadAtEntry,avgSpreadAtClose,avgLatencyMs
+
+04/04/2026 06:02:32.654 Info | ✅ Reconstruyendo estado desde historial...
+
+04/04/2026 06:02:32.653 Info | 📘 [OPEN_CSV] UTC=2026-04-04 06:02:32 | MAD=2026-04-04 08:02:32 | NY=2026-04-04 02:02:32 | event,tradingDay,label,tradeType,posId,bidAtSend,askAtSend,quoteMidAtSend,requestedPrice,expectedPrice,bidAtFill,askAtFill,fillPrice,slippagePts,slippageSigned,sendTimeUtc,fillTimeUtc,executionType,fillType,spreadAtSend,spreadAtFill,latencyMs,slPts,tpPts,risk$
+
+04/04/2026 06:02:32.653 Info | ✅ TZ Madrid: (UTC+01:00) Central European Time (Madrid) (Europe/Madrid)
+
+04/04/2026 06:02:32.653 Info | ✅ TZ NY: (UTC-05:00) Eastern Time (New York) (America/New_York)
+
+04/04/2026 06:02:32.653 Info | ✅ Server UTC: 2026-04-04 06:02:32
+
+04/04/2026 06:02:32.653 Info | ⚠️ Recomendación: configurar 'Balance Inicial' para precisión absoluta.
+
+04/04/2026 06:02:32.653 Info | ✅ Bot iniciado.
+
+04/04/2026 06:02:32.653 Info | ✅ Madrid: 2026-04-04 08:02:32 (Saturday)
+
+04/04/2026 06:02:32.653 Info | ✅ NY: 2026-04-04 02:02:32 (Saturday)
+
+04/04/2026 06:02:32.653 Info | ✅ Cierre forzoso: 15:55 NY
+
+04/04/2026 06:02:32.653 Info | 📌 Symbol: US30 | Digits=1 | PipSize=1 | TickSize=0.1 | Spread(pips)=2.0
+
+04/04/2026 06:02:32.653 Info | ⚠️ Validación TZ: Kind Unspecified (normal en conversión local). Se registra una sola vez.
+
+04/04/2026 06:02:32.653 Info | ⚠️ Se detectaron trades anteriores (34). Balance inicial estimado: 3869.30
+
+04/04/2026 06:02:31.097 Info | CBot instance [Quantum_us30pepper, US30, m5] started.
+
+04/04/2026 05:54:53.161 Error | CBot instance [Quantum_us30pepper, US30, m5] aborted by timeout.
+
+02/04/2026 19:55:15.342 Info | 📘 [DAY_SUMMARY] UTC=2026-04-02 19:55:15 | MAD=2026-04-02 21:55:15 | NY=2026-04-02 15:55:15 | day_summary,2026-04-02,3,3,1.92,1.92,29,-29,2.03,2.03,297
+
+02/04/2026 15:48:48.969 Info | 📘 [CLOSE_CSV] UTC=2026-04-02 15:48:48 | MAD=2026-04-02 17:48:48 | NY=2026-04-02 11:48:48 | trade_close,2026-04-02,"RRL","Buy",358177569,"StopLoss","SL",46419.15,46484.7,46481.4,33,-33,46418.1,46420.2,46418.1,46419.1,10,10,"2026-04-02T15:48:48.963Z","2026-04-02T15:48:48.963Z","Market","Full",2,2.1,2.1,2.1,279.527,615,1225,39.46,-0.947,13.81,"NY",-37.38,-37.38
+
+02/04/2026 15:42:37.090 Info | 📘 [CLOSE_CSV] UTC=2026-04-02 15:42:37 | MAD=2026-04-02 17:42:37 | NY=2026-04-02 11:42:37 | trade_close,2026-04-02,"RRL","Buy",358168893,"StopLoss","SL",46432.8,46497.6,46496.8,8,-8,46431.8,46433.8,46431.8,46431.7,1,-1,"2026-04-02T15:42:37.080Z","2026-04-02T15:42:37.080Z","Market","Full",2,2,2,2.1,311.324,615,1225,39.46,-0.99,12.61,"NY",-39.06,-39.06
+
+02/04/2026 15:35:00.446 Trade | Executing Market Order to Buy 0.6 US30 (SL: 61.5, TP: 122.5)
+
+02/04/2026 15:35:00.446 Trade | → Executing Market Order to Buy 0.6 US30 (SL: 61.5, TP: 122.5) SUCCEEDED, Position PID358177569
+
+02/04/2026 15:35:00.446 Info | 📘 [OPEN_CSV] UTC=2026-04-02 15:35:00 | MAD=2026-04-02 17:35:00 | NY=2026-04-02 11:35:00 | trade_open,2026-04-02,"RRL","Buy",358177569,46482.7,46484.7,46483.7,46484.7,46484.7,46482.7,46484.7,46481.4,33,-33,"2026-04-02T15:35:00.153Z","2026-04-02T15:35:00.426Z","Market","Full",2,2,279.527,615,1225,39.46
+
+02/04/2026 15:30:00.486 Trade | → Executing Market Order to Buy 0.6 US30 (SL: 61.5, TP: 122.5) SUCCEEDED, Position PID358168893
+
+02/04/2026 15:30:00.486 Info | 📘 [OPEN_CSV] UTC=2026-04-02 15:30:00 | MAD=2026-04-02 17:30:00 | NY=2026-04-02 11:30:00 | trade_open,2026-04-02,"RRL","Buy",358168893,46495.6,46497.6,46496.6,46497.6,46497.6,46495.6,46497.6,46496.8,8,-8,"2026-04-02T15:30:00.148Z","2026-04-02T15:30:00.442Z","Market","Full",2,2,311.324,615,1225,39.46
+
+02/04/2026 15:30:00.485 Trade | Executing Market Order to Buy 0.6 US30 (SL: 61.5, TP: 122.5)
+
+02/04/2026 14:33:29.297 Info | 📘 [CLOSE_CSV] UTC=2026-04-02 14:33:29 | MAD=2026-04-02 16:33:29 | NY=2026-04-02 10:33:29 | trade_close,2026-04-02,"LONDON_1B1S","Buy",358059073,"TakeProfit","TP",46306.5,46177.9,46173.3,46,-46,46305.5,46307.5,46305.5,46303.9,16,-16,"2026-04-02T14:33:29.283Z","2026-04-02T14:33:29.283Z","Market","Full",2.1,2,2,2.1,299.516,615,1225,38.67,2.026,5.86,"London",78.36,78.36
+
+02/04/2026 14:27:37.606 Info | 📘 [OPEN_CSV] UTC=2026-04-02 14:27:37 | MAD=2026-04-02 16:27:37 | NY=2026-04-02 10:27:37 | trade_open,2026-04-02,"LONDON_1B1S","Buy",358059073,46175.8,46177.9,46176.85,46177.9,46177.9,46175.8,46177.9,46173.3,46,-46,"2026-04-02T14:27:37.296Z","2026-04-02T14:27:37.577Z","Market","Full",2.1,2.1,299.516,615,1225,38.67
+
+02/04/2026 14:27:37.606 Trade | → Executing Market Order to Buy 0.6 US30 (SL: 61.5, TP: 122.5) SUCCEEDED, Position PID358059073
+
+02/04/2026 14:27:37.606 Trade | Executing Market Order to Buy 0.6 US30 (SL: 61.5, TP: 122.5)
+
+31/03/2026 19:55:15.342 Info | 📘 [DAY_SUMMARY] UTC=2026-03-31 19:55:15 | MAD=2026-03-31 21:55:15 | NY=2026-03-31 15:55:15 | day_summary,2026-03-31,2,2,35.46,35.46,47,-43,2,2,333
+
+31/03/2026 17:02:22.457 Info | 📘 [CLOSE_CSV] UTC=2026-03-31 17:02:22 | MAD=2026-03-31 19:02:22 | NY=2026-03-31 13:02:22 | trade_close,2026-03-31,"RRL","Buy",353741066,"TakeProfit","TP",46151.4,46023,46023.4,4,4,46150.4,46152.4,46150.4,46147,34,-34,"2026-03-31T17:02:22.442Z","2026-03-31T17:02:22.442Z","Market","Full",2,2,2,2.1,279.923,615,1225,37.93,1.955,12.37,"NY",74.16,74.16
+
+31/03/2026 16:50:00.353 Trade | Executing Market Order to Buy 0.6 US30 (SL: 61.5, TP: 122.5)
+
+31/03/2026 16:50:00.353 Trade | → Executing Market Order to Buy 0.6 US30 (SL: 61.5, TP: 122.5) SUCCEEDED, Position PID353741066
+
+31/03/2026 16:50:00.353 Info | 📘 [OPEN_CSV] UTC=2026-03-31 16:50:00 | MAD=2026-03-31 18:50:00 | NY=2026-03-31 12:50:00 | trade_open,2026-03-31,"RRL","Buy",353741066,46021,46023,46022,46023,46023,46021,46023,46023.4,4,4,"2026-03-31T16:50:00.041Z","2026-03-31T16:50:00.310Z","Market","Full",2,2,279.923,615,1225,37.93
+
+31/03/2026 16:46:03.773 Info | 📘 [CLOSE_CSV] UTC=2026-03-31 16:46:03 | MAD=2026-03-31 18:46:03 | NY=2026-03-31 12:46:03 | trade_close,2026-03-31,"RRL","Buy",353726004,"StopLoss","SL",46031,46105,46096,90,-90,46030,46032,46030,46031.5,15,15,"2026-03-31T16:46:03.768Z","2026-03-31T16:46:03.768Z","Market","Full",2,2,2,2,386.803,615,1225,38.32,-1.01,1.06,"NY",-38.7,-38.7
+
+31/03/2026 16:45:00.497 Trade | Executing Market Order to Buy 0.6 US30 (SL: 61.5, TP: 122.5)
+
+31/03/2026 16:45:00.497 Info | 📘 [OPEN_CSV] UTC=2026-03-31 16:45:00 | MAD=2026-03-31 18:45:00 | NY=2026-03-31 12:45:00 | trade_open,2026-03-31,"RRL","Buy",353726004,46103,46105,46104,46105,46105,46103,46105,46096,90,-90,"2026-03-31T16:45:00.084Z","2026-03-31T16:45:00.454Z","Market","Full",2,2,386.803,615,1225,38.32
+
+31/03/2026 16:45:00.497 Trade | → Executing Market Order to Buy 0.6 US30 (SL: 61.5, TP: 122.5) SUCCEEDED, Position PID353726004
+
+27/03/2026 19:55:15.346 Info | 📘 [DAY_SUMMARY] UTC=2026-03-27 19:55:15 | MAD=2026-03-27 20:55:15 | NY=2026-03-27 15:55:15 | day_summary,2026-03-27,2,2,-77.16,-77.16,7.5,7.5,2.05,2.05,318
+
+27/03/2026 18:43:30.578 Info | 📘 [CLOSE_CSV] UTC=2026-03-27 18:43:30 | MAD=2026-03-27 19:43:30 | NY=2026-03-27 14:43:30 | trade_close,2026-03-27,"RRL","Sell",350457168,"StopLoss","SL",45277.8,45213.1,45214,9,9,45276.8,45278.8,45278.8,45281.3,25,25,"2026-03-27T18:43:30.567Z","2026-03-27T18:43:30.567Z","Market","Full",2,2,2,2.1,315.633,615,1225,39.09,-1.033,33.5,"NY",-40.38,-40.38
+
+27/03/2026 18:43:28.981 Info | 📘 [CLOSE_CSV] UTC=2026-03-27 18:43:28 | MAD=2026-03-27 19:43:28 | NY=2026-03-27 14:43:28 | trade_close,2026-03-27,"RRL","Sell",350463945,"StopLoss","SL",45263.15,45201.1,45201.7,6,6,45262.1,45264.2,45264.2,45263,12,-12,"2026-03-27T18:43:28.971Z","2026-03-27T18:43:28.971Z","Market","Full",2.1,2.1,2.1,2.1,320.467,615,1225,39.09,-0.941,28.48,"NY",-36.78,-36.78
+
+27/03/2026 18:15:00.442 Trade | Executing Market Order to Sell 0.6 US30 (SL: 61.5, TP: 122.5)
+
+27/03/2026 18:15:00.442 Trade | → Executing Market Order to Sell 0.6 US30 (SL: 61.5, TP: 122.5) SUCCEEDED, Position PID350463945
+
+27/03/2026 18:15:00.442 Info | 📘 [OPEN_CSV] UTC=2026-03-27 18:15:00 | MAD=2026-03-27 19:15:00 | NY=2026-03-27 14:15:00 | trade_open,2026-03-27,"RRL","Sell",350463945,45201.1,45203.2,45202.15,45201.1,45201.1,45201.1,45203.2,45201.7,6,6,"2026-03-27T18:15:00.089Z","2026-03-27T18:15:00.399Z","Market","Full",2.1,2.1,320.467,615,1225,39.09
+
+27/03/2026 18:10:00.457 Trade | → Executing Market Order to Sell 0.6 US30 (SL: 61.5, TP: 122.5) SUCCEEDED, Position PID350457168
+
+27/03/2026 18:10:00.457 Info | 📘 [OPEN_CSV] UTC=2026-03-27 18:10:00 | MAD=2026-03-27 19:10:00 | NY=2026-03-27 14:10:00 | trade_open,2026-03-27,"RRL","Sell",350457168,45213.1,45215.1,45214.1,45213.1,45213.1,45213.1,45215.1,45214,9,9,"2026-03-27T18:10:00.115Z","2026-03-27T18:10:00.417Z","Market","Full",2,2,315.633,615,1225,39.09
+
+27/03/2026 18:10:00.457 Trade | Executing Market Order to Sell 0.6 US30 (SL: 61.5, TP: 122.5)
+
+24/03/2026 19:55:15.342 Info | 📘 [DAY_SUMMARY] UTC=2026-03-24 19:55:15 | MAD=2026-03-24 20:55:15 | NY=2026-03-24 15:55:15 | day_summary,2026-03-24,1,1,-38.04,-38.04,11,-11,2,2.1,857
+
+24/03/2026 16:35:26.530 Info | 📘 [CLOSE_CSV] UTC=2026-03-24 16:35:26 | MAD=2026-03-24 17:35:26 | NY=2026-03-24 12:35:26 | trade_close,2026-03-24,"RRL","Buy",345343864,"StopLoss","SL",46270.55,46332.9,46331.8,11,-11,46269.5,46271.6,46269.5,46268.4,11,-11,"2026-03-24T16:35:26.520Z","2026-03-24T16:35:26.520Z","Market","Full",2,2.1,2.1,2.1,857.096,615,1225,39.47,-0.964,5.43,"NY",-38.04,-38.04
+
+24/03/2026 16:30:01.206 Trade | Executing Market Order to Buy 0.6 US30 (SL: 61.5, TP: 122.5)
+
+24/03/2026 16:30:01.206 Trade | → Executing Market Order to Buy 0.6 US30 (SL: 61.5, TP: 122.5) SUCCEEDED, Position PID345343864
+
+24/03/2026 16:30:01.206 Info | 📘 [OPEN_CSV] UTC=2026-03-24 16:30:01 | MAD=2026-03-24 17:30:01 | NY=2026-03-24 12:30:01 | trade_open,2026-03-24,"RRL","Buy",345343864,46330.9,46332.9,46331.9,46332.9,46332.9,46330.9,46332.9,46331.8,11,-11,"2026-03-24T16:30:00.248Z","2026-03-24T16:30:00.751Z","Market","Full",2,2,857.096,615,1225,39.47
+
+23/03/2026 11:25:35.325 Info | ⚠️ Recomendación: configurar 'Balance Inicial' para precisión absoluta.
+
+23/03/2026 11:25:35.325 Info | ✅ Bot iniciado.
+
+23/03/2026 11:25:35.325 Info | ✅ TZ Madrid: (UTC+01:00) Central European Time (Madrid) (Europe/Madrid)
+
+23/03/2026 11:25:35.325 Info | ✅ TZ NY: (UTC-05:00) Eastern Time (New York) (America/New_York)
+
+23/03/2026 11:25:35.325 Info | 📌 Symbol: US30 | Digits=1 | PipSize=1 | TickSize=0.1 | Spread(pips)=2.0
+
+23/03/2026 11:25:35.325 Info | ⚠️ Se detectaron trades anteriores (26). Balance inicial estimado: 3947.12
+
+23/03/2026 11:25:35.325 Info | 📘 [CLOSE_CSV] UTC=2026-03-23 11:25:35 | MAD=2026-03-23 12:25:35 | NY=2026-03-23 07:25:35 | event,tradingDay,label,tradeType,posId,closeReason,closeType,quoteMidAtCloseSend,expectedPrice,fillPrice,slippagePts,slippageSigned,bidAtCloseSend,askAtCloseSend,expectedClosePrice,fillClosePrice,closeSlippagePts,closeSlippageSigned,sendTimeUtc,fillTimeUtc,executionType,fillType,spreadAtEntry,spreadAtCloseSend,spreadAtCloseFill,maxSpreadDuringTrade,latencyMs,slPts,tpPts,risk$,resultR,durationMin,sessionTag,netProfit,grossProfit
+
+23/03/2026 11:25:35.325 Info | 📘 [DAY_SUMMARY] UTC=2026-03-23 11:25:35 | MAD=2026-03-23 12:25:35 | NY=2026-03-23 07:25:35 | event,tradingDay,openCount,closeCount,netProfit,grossProfit,avgSlippagePts,avgSlippageSigned,avgSpreadAtEntry,avgSpreadAtClose,avgLatencyMs
+
+23/03/2026 11:25:35.325 Info | ✅ Reconstruyendo estado desde historial...
+
+23/03/2026 11:25:35.325 Info | ✅ Server UTC: 2026-03-23 11:25:35
+
+23/03/2026 11:25:35.325 Info | ✅ Madrid: 2026-03-23 12:25:35 (Monday)
+
+23/03/2026 11:25:35.325 Info | ✅ NY: 2026-03-23 07:25:35 (Monday)
+
+23/03/2026 11:25:35.325 Info | ✅ Cierre forzoso: 15:55 NY
+
+23/03/2026 11:25:35.325 Info | ⚠️ Validación TZ: Kind Unspecified (normal en conversión local). Se registra una sola vez.
+
+23/03/2026 11:25:35.325 Info | 📘 [OPEN_CSV] UTC=2026-03-23 11:25:35 | MAD=2026-03-23 12:25:35 | NY=2026-03-23 07:25:35 | event,tradingDay,label,tradeType,posId,bidAtSend,askAtSend,quoteMidAtSend,requestedPrice,expectedPrice,bidAtFill,askAtFill,fillPrice,slippagePts,slippageSigned,sendTimeUtc,fillTimeUtc,executionType,fillType,spreadAtSend,spreadAtFill,latencyMs,slPts,tpPts,risk$
+
+23/03/2026 11:25:28.703 Info | CBot instance [Quantum_us30pepper, US30, m5] started.
+
+23/03/2026 11:25:27.310 Starting cBot...
+

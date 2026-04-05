@@ -1,0 +1,47 @@
+{
+  "required_columns": [
+    "trader_id",
+    "close_time",
+    "pnl_net"
+  ],
+  "optional_columns": [
+    "quality_flag",
+    "symbol",
+    "volume",
+    "holding_minutes",
+    "risk_pct",
+    "slippage"
+  ],
+  "baseline": {
+    "weekly_min_periods": 12,
+    "monthly_min_periods": 6,
+    "exclude_most_recent_periods": 1
+  },
+  "ml": {
+    "contamination": 0.1,
+    "random_state": 42,
+    "n_estimators": 200
+  },
+  "traffic_light": {
+    "yellow_severity_min": 35,
+    "red_severity_min": 65,
+    "yellow_anomaly_min": 0.55,
+    "red_anomaly_min": 0.8,
+    "max_hard_breaches_for_green": 0
+  },
+  "weights": {
+    "expectancy_drop": 22,
+    "profit_factor_drop": 18,
+    "win_rate_drop": 12,
+    "pnl_volatility_up": 12,
+    "trade_count_drop": 8,
+    "max_consec_losses_up": 10,
+    "symbol_concentration_up": 8,
+    "size_instability_up": 10
+  },
+  "hard_breaches": {
+    "profit_factor_red_below": 0.9,
+    "expectancy_red_below": 0.0,
+    "max_robust_z_red": 2.5
+  }
+}

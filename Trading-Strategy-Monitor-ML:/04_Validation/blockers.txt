@@ -1,0 +1,29 @@
+FASE 3 — BLOCKERS
+
+[HIGH] AMB_001 — trader_id missing at row level
+- Estado: OPEN
+- Impacto: el esquema canónico mínimo exige `trader_id`, pero el raw no lo trae.
+- Resolución actual: surrogate temporal a nivel caso.
+- Riesgo: no portable a multi-trader y deja identidad no nativa.
+
+[HIGH] AMB_002 — time zone semantics
+- Estado: OPEN
+- Impacto: las fechas parsean, pero `UTC+1` no está validado contra UTC/Madrid/NY.
+- Riesgo: impide conversión timezone y cualquier trazabilidad temporal fuerte.
+
+[MEDIUM] AMB_003 — log join key
+- Estado: OPEN
+- Impacto: `ID` del CSV no coincide directamente con `posId` del log.
+- Riesgo: no se puede enriquecer contra log sin una regla de join validada.
+
+[MEDIUM] AMB_004 — filename metadata
+- Estado: OPEN
+- Impacto: el nombre del archivo codifica parámetros no documentados formalmente dentro del dataset.
+- Riesgo: no usar esos parámetros como variables analíticas del sistema.
+
+BLOCKER SUMMARY
+- Resultado del gate: NO GO
+- Motivo principal: existen 2 bloqueantes HIGH abiertos
+- Condición mínima para reabrir GO:
+  1) aceptar por escrito limpieza restringida sin timezone conversion ni join con log, o
+  2) resolver semántica temporal y regla de identidad/join

@@ -1,0 +1,29 @@
+FASE 1 — AUDITORÍA ESTRUCTURAL
+Caso: 2026-04_Quantum_US30_SingleTrader
+Archivo auditado: 2026-04-02 18-45-49 History - Quantum_us30pepper (US30, m5, True, True, 0, 1, 61.5, 122.5, 9, 15, 7,).csv
+
+Estado: ADVANCE_WITH_RESERVATIONS
+Confiabilidad estructural: ALTA para avanzar a normalización, con reservas documentadas.
+
+Hallazgos clave:
+- Filas: 1823
+- Columnas: 16
+- Nulos raw en columnas críticas: 0
+- Duplicados completos: 0
+- ID duplicados: 0
+- Parseo de fechas entry/close: 1823/1823 y 1823/1823
+- Cierres anteriores a aperturas: 0
+- Mismatch Quantity vs Volume (numérico): 0
+- Mismatch precio vs pips por lado: Buy=0, Sell=0
+- Mismatch Net $ vs Gross $: 0
+- Balance $ parseable tras limpieza: sí
+- Balance $ contiene NBSP: sí
+- Orden raw por Entry time: sí
+- Orden raw por Closing time: no
+
+Reservas activas:
+- trader_id ausente como columna explícita
+- semántica temporal UTC+1 sigue abierta
+- join ID vs posId no validado
+- Balance $ requiere limpieza de NBSP
+- Balance $ no debe usarse para reconstrucción secuencial en el orden raw

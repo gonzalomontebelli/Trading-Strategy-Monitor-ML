@@ -1,0 +1,18 @@
+mapping_order,mapping_scope,canonical_field,source_column,source_type,transformation_rule,target_dtype,required_for_phase4,validation_rule,default_quality_impact,notes
+1,canonical_minimum,trader_id,,derived_case_constant,2026-04_Quantum_US30_SingleTrader,string,yes,surrogate temporal a nivel caso; no reutilizable en multi-trader,WARN,No existe columna trader en el raw
+2,canonical_minimum,symbol,Symbol,raw_column,trim + uppercase,string,yes,valor no vacío y reconocible,ERROR,Único símbolo detectado: US30
+3,canonical_minimum,side,Type,raw_column,Buy→BUY; Sell→SELL,string,yes,dominio cerrado BUY/SELL,ERROR,No admitir otros valores
+4,canonical_minimum,open_time,Entry time (UTC+1),raw_column,%d/%m/%Y %H:%M:%S.%f; parse sin conversión TZ,datetime,yes,parse exitoso requerido,WARN,Mantener reloj raw hasta validar timezone
+5,canonical_minimum,close_time,Closing time (UTC+1),raw_column,%d/%m/%Y %H:%M:%S.%f; parse sin conversión TZ; close>=open,datetime,yes,parse exitoso y close_time>=open_time,WARN,Mantener reloj raw hasta validar timezone
+6,canonical_minimum,volume,Quantity,raw_column_with_crosscheck,extraer payload numérico; cross-check con Volume,decimal,yes,Quantity_num debe coincidir con Volume_num,ERROR,Quantity queda como fuente primaria
+7,canonical_minimum,entry_price,Entry price,raw_column,numeric_cast_direct,decimal,yes,parse numérico obligatorio,ERROR,
+8,canonical_minimum,exit_price,Closing price,raw_column,numeric_cast_direct,decimal,yes,parse numérico obligatorio,ERROR,
+9,canonical_minimum,pnl_net,Net $,raw_column,money_text_cleanup_then_numeric_cast,decimal,yes,parse numérico obligatorio,ERROR,Gross $ queda solo como soporte
+10,traceability_support,trade_id,ID,raw_column,preservar valor original,int64|string,recommended,unicidad por fila,ERROR,Clave útil para trazabilidad y joins futuros
+11,traceability_support,strategy_label,Label,raw_column,trim preservando dominio observado,string,recommended,opcional,OK,"Valores detectados: LONDON_1B1S, RRL"
+12,traceability_support,pnl_gross,Gross $,raw_column,money_text_cleanup_then_numeric_cast,decimal,recommended,opcional,OK,No usar como fuente principal de pnl_net
+13,traceability_support,pips,Pips,raw_column,numeric_cast_direct,decimal,recommended,opcional,OK,Útil para controles y análisis
+14,traceability_support,balance_after_trade,Balance $,raw_column,money_text_cleanup_then_numeric_cast,decimal,recommended,opcional,WARN,No usar secuencialmente en orden raw
+15,traceability_support,broker_commission,Broker commission,raw_column,numeric_cast_direct,decimal,recommended,opcional,OK,En este export todo observado es 0
+16,traceability_support,swaps,Swaps,raw_column,numeric_cast_direct,decimal,recommended,opcional,OK,En este export todo observado es 0
+17,traceability_support,volume_alt_raw,Volume,raw_column,preservar raw para cross-check,string,recommended,opcional,WARN,Solapada con Quantity

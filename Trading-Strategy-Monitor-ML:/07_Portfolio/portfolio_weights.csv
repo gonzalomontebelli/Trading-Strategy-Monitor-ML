@@ -1,0 +1,2 @@
+case_id,trader_id,target_weight_pct,weight_basis,portfolio_type,implementation_note
+2026-04_Quantum_US30_SingleTrader,2026-04_Quantum_US30_SingleTrader,100.0,single_trader_universe_only,single_manager_pilot_portfolio,El 100% corresponde a la composición interna de la cartera; la activación en capital real debe ser escalonada por validación operativa.

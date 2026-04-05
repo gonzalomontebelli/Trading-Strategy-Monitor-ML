@@ -1,0 +1,17 @@
+column_order,column_name,raw_dtype,semantic_group,critical_field,null_count,blank_string_count,unique_values,parser_status,parse_success_rate,notes
+1,Label,object,identificación,False,0,0,2,N/A,,
+2,Entry time (UTC+1),object,ejecución,True,0,0,1823,OK,1.0,Formato validado DD/MM/YYYY HH:MM:SS.mmm; semántica UTC+1 abierta.
+3,Symbol,object,identificación,True,0,0,1,N/A,,
+4,Quantity,object,riesgo,True,0,0,312,OK,1.0,Columna de tamaño en texto; solapada con Volume.
+5,Volume,object,riesgo,True,0,0,312,OK,1.0,Columna de tamaño en texto; solapada con Quantity.
+6,Type,object,identificación,False,0,0,2,N/A,,
+7,Entry price,float64,ejecución,False,0,0,1811,OK,1.0,
+8,Broker commission,float64,riesgo,False,0,0,1,OK,1.0,Todos los valores observados son 0.
+9,Swaps,float64,riesgo,False,0,0,1,OK,1.0,Todos los valores observados son 0.
+10,Closing price,float64,ejecución,False,0,0,1687,OK,1.0,
+11,Closing time (UTC+1),object,ejecución,True,0,0,1706,OK,1.0,Formato validado DD/MM/YYYY HH:MM:SS.mmm; semántica UTC+1 abierta.
+12,Net $,object,resultado,True,0,0,1364,OK,1.0,Equivale a Gross $ en este export porque Broker commission y Swaps son 0.
+13,Pips,float64,resultado,True,0,0,373,OK,1.0,
+14,Gross $,object,resultado,True,0,0,1364,OK,1.0,Equivale a Net $ en este export porque Broker commission y Swaps son 0.
+15,Balance $,object,resultado,True,0,0,1822,OK,1.0,Texto con separador NBSP; requiere limpieza antes de casteo numérico.
+16,ID,int64,identificación,True,0,0,1823,OK,1.0,"Único por fila, pero no secuencial continuo."

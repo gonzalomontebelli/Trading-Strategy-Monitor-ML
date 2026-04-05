@@ -1,0 +1,7 @@
+metric,baseline_value,yellow_threshold,red_threshold,action_yellow,action_red
+rolling_expectancy_e_20_trades,181.696851,< 136.272639,<= 0.0,REDUCIR,PAUSAR
+rolling_profit_factor_20_trades,1.564128,< 1.2,< 1.0,REDUCIR,PAUSAR
+rolling_win_rate_20_trades_pct,45.968184,< 37.968184,< 33.968184,VIGILAR,REDUCIR_O_PAUSAR
+portfolio_drawdown_pct,14.467522,> 16.63765,> 19.531155,REDUCIR,PAUSAR
+execution_replication_gap,N/A_en_esta_fase,slippage/desviacion persistente,replicacion no confiable,REDUCIR,DEJAR_DE_COPIAR
+data_integrity_warning_profile,trader_id_surrogate_case_level|timezone_unvalidated_parse_only,mismo warning sin empeorar,warning nuevo o inconsistencia critica,VIGILAR,PAUSAR

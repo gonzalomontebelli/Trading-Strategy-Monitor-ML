@@ -1,0 +1,3 @@
+file_name,file_role,format,grain,rows_detected,columns_detected,status
+"2026-04-02 18-45-49 History - Quantum_us30pepper (US30, m5, True, True, 0, 1, 61.5, 122.5, 9, 15, 7,).csv",primary_table,csv,1 row = 1 closed trade,1823,16.0,usable
+log.txt,secondary_support,txt,plain text log with 3 embedded CSV-like schemas,4573,,usable_with_parsing

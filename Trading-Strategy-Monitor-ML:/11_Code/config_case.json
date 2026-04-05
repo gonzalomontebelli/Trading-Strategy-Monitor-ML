@@ -1,0 +1,66 @@
+{
+  "case_id": "2026-04_Quantum_US30_SingleTrader",
+  "timezone_note": "timezone_unvalidated_parse_only",
+  "input_paths": {
+    "clean_data_csv": "05_Clean/clean_data.csv",
+    "selected_traders_csv": "07_Portfolio/selected_traders.csv",
+    "portfolio_weights_csv": "07_Portfolio/portfolio_weights.csv",
+    "hard_limits_md": "07_Portfolio/hard_limits.md"
+  },
+  "output_paths": {
+    "monitoring_dir": "08_Monitoring",
+    "code_dir": "11_Code"
+  },
+  "required_columns": {
+    "clean_data": [
+      "trader_id",
+      "symbol",
+      "side",
+      "open_time",
+      "close_time",
+      "volume",
+      "entry_price",
+      "exit_price",
+      "pnl_net",
+      "trade_id",
+      "quality_flag"
+    ],
+    "selected_traders": [
+      "case_id",
+      "trader_id",
+      "selection_status",
+      "copy_decision",
+      "portfolio_role"
+    ],
+    "portfolio_weights": [
+      "case_id",
+      "trader_id",
+      "target_weight_pct",
+      "portfolio_type"
+    ]
+  },
+  "quality_rules": {
+    "accepted_quality_flags": [
+      "OK",
+      "WARN"
+    ],
+    "rejected_quality_flags": [
+      "ERROR"
+    ]
+  },
+  "monitoring_thresholds_path": "08_Monitoring/monitoring_thresholds.json",
+  "monitoring_cadence": {
+    "weekly": "W-MON",
+    "monthly": "MS",
+    "quarterly": "QS"
+  },
+  "ml_features_weekly": [
+    "expectancy",
+    "win_rate",
+    "pnl_std",
+    "trades",
+    "hold_min_median",
+    "buy_share",
+    "volume_mean"
+  ]
+}

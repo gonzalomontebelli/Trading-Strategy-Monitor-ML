@@ -1,0 +1,438 @@
+{
+  "case_id": "2026-04_Quantum_US30_SingleTrader",
+  "generated_at_utc": "2026-04-02T21:21:13.552219+00:00",
+  "data_quality_context": {
+    "quality_flag_unique": [
+      "WARN"
+    ],
+    "quality_warning_profile_unique": [
+      "trader_id_surrogate_case_level|timezone_unvalidated_parse_only"
+    ],
+    "note": "Todos los trades presentes en clean_data.csv quedaron en quality_flag WARN; no se detectaron quality_error_codes no nulos en el archivo cargado."
+  },
+  "portfolio_context": {
+    "portfolio_type": "single_manager_pilot_portfolio",
+    "copy_decision": "COPIAR_CON_RESERVAS",
+    "selected_traders_count": 1,
+    "selected_traders": [
+      "2026-04_Quantum_US30_SingleTrader"
+    ],
+    "weights_pct": {
+      "2026-04_Quantum_US30_SingleTrader": 100.0
+    },
+    "hard_limits_file_integrated": false,
+    "hard_limits_note": "hard_limits.md no fue cargado en esta fase; los thresholds de monitoreo no reemplazan la política de hard limits ya definida en Fase 6."
+  },
+  "baseline_trade_level": {
+    "trader_id": "2026-04_Quantum_US30_SingleTrader",
+    "n_trades": 1823,
+    "n_active_days": 925,
+    "date_start": "2019-08-01",
+    "date_end": "2026-04-02",
+    "quality_flag_unique": [
+      "WARN"
+    ],
+    "quality_warning_profile_unique": [
+      "trader_id_surrogate_case_level|timezone_unvalidated_parse_only"
+    ],
+    "win_rate": 0.4596818431157433,
+    "expectancy": 181.69685134393856,
+    "trade_std": 1650.4532993940304,
+    "e_sd": 0.11008905941819086,
+    "sqn": 4.700428983564151,
+    "profit_factor": 1.5641276112075282,
+    "avg_win": 1095.9352028639619,
+    "avg_loss_abs": 596.1018680203046,
+    "max_single_win": 12147.3,
+    "max_single_loss": -6450.0,
+    "max_drawdown_abs_closed_pnl": -55462.98999999999,
+    "holding_min_mean": 86.36303059974401,
+    "holding_min_median": 50.574216666666665,
+    "holding_min_p95": 260.0012233333333,
+    "buy_share": 0.7553483269336259,
+    "sell_share": 0.24465167306637414,
+    "volume_mean": 9.580087767416346,
+    "volume_median": 2.6,
+    "volume_p95": 50.12999999999991,
+    "top5_wins_share_of_total_profit": 0.05617205344505302,
+    "top10_wins_share_of_total_profit": 0.10021522360181695
+  },
+  "period_quantiles": {
+    "weekly": {
+      "pnl_net": {
+        "0.05": -4170.71,
+        "0.1": -825.2719999999997,
+        "0.25": -121.41500000000002,
+        "0.5": 113.58,
+        "0.75": 923.005,
+        "0.9": 4561.1860000000015,
+        "0.95": 8940.454999999998
+      },
+      "trades": {
+        "0.05": 2.0,
+        "0.1": 2.0,
+        "0.25": 4.0,
+        "0.5": 6.0,
+        "0.75": 7.0,
+        "0.9": 9.0,
+        "0.95": 10.0
+      },
+      "win_rate": {
+        "0.05": 0.0,
+        "0.1": 0.0,
+        "0.25": 0.25,
+        "0.5": 0.45454545454545453,
+        "0.75": 0.6666666666666666,
+        "0.9": 1.0,
+        "0.95": 1.0
+      },
+      "expectancy": {
+        "0.05": -664.976,
+        "0.1": -175.7746666666666,
+        "0.25": -22.261666666666663,
+        "0.5": 24.013333333333332,
+        "0.75": 165.028125,
+        "0.9": 886.6548333333337,
+        "0.95": 1818.9273333333329
+      },
+      "pnl_std": {
+        "0.05": 5.891129651974795,
+        "0.1": 20.40001042715629,
+        "0.25": 46.89527188701537,
+        "0.5": 157.74109094678477,
+        "0.75": 763.1265527948774,
+        "0.9": 2303.425302273923,
+        "0.95": 3572.5451452295024
+      },
+      "e_sd": {
+        "0.05": -5.693635541057659,
+        "0.1": -1.553133584504244,
+        "0.25": -0.2207076349744507,
+        "0.5": 0.14794744977887792,
+        "0.75": 0.4704485037047174,
+        "0.9": 1.0235951254623743,
+        "0.95": 2.714673314898016
+      },
+      "hold_min_median": {
+        "0.05": 8.285449166666668,
+        "0.1": 12.113883333333334,
+        "0.25": 24.968341666666667,
+        "0.5": 57.90001666666666,
+        "0.75": 121.90828333333334,
+        "0.9": 190.66939333333337,
+        "0.95": 223.2680766666665
+      },
+      "buy_share": {
+        "0.05": 0.0,
+        "0.1": 0.3333333333333333,
+        "0.25": 0.5714285714285714,
+        "0.5": 0.8,
+        "0.75": 1.0,
+        "0.9": 1.0,
+        "0.95": 1.0
+      },
+      "volume_mean": {
+        "0.05": 0.39999999999999997,
+        "0.1": 0.5,
+        "0.25": 0.8,
+        "0.5": 2.2399999999999998,
+        "0.75": 11.283333333333333,
+        "0.9": 26.89428571428571,
+        "0.95": 41.181249999999984
+      }
+    },
+    "monthly": {
+      "pnl_net": {
+        "0.05": -3269.6744999999996,
+        "0.1": -131.90699999999995,
+        "0.25": 52.05250000000001,
+        "0.5": 607.015,
+        "0.75": 5045.8075,
+        "0.9": 10962.152,
+        "0.95": 28041.441999999923
+      },
+      "trades": {
+        "0.05": 2.85,
+        "0.1": 11.7,
+        "0.25": 20.0,
+        "0.5": 24.5,
+        "0.75": 28.0,
+        "0.9": 34.0,
+        "0.95": 35.0
+      },
+      "win_rate": {
+        "0.05": 0.27220279720279716,
+        "0.1": 0.29888888888888887,
+        "0.25": 0.37339901477832516,
+        "0.5": 0.47987117552334946,
+        "0.75": 0.5323529411764706,
+        "0.9": 0.5994301994301994,
+        "0.95": 0.6666666666666666
+      },
+      "expectancy": {
+        "0.05": -102.79054989919354,
+        "0.1": -9.133256410256408,
+        "0.25": 2.6854241071428575,
+        "0.5": 23.800263975155282,
+        "0.75": 206.82508064516128,
+        "0.9": 525.9236666666666,
+        "0.95": 818.3183862229079
+      },
+      "pnl_std": {
+        "0.05": 33.91443228500554,
+        "0.1": 44.457434155084684,
+        "0.25": 59.45874041614806,
+        "0.5": 209.4019884526234,
+        "0.75": 1050.4410111213524,
+        "0.9": 2659.3940534983585,
+        "0.95": 4056.244160543838
+      },
+      "e_sd": {
+        "0.05": -0.22510347013864426,
+        "0.1": -0.13981723483420527,
+        "0.25": 0.03464157600621264,
+        "0.5": 0.16265706782435324,
+        "0.75": 0.3110484459973641,
+        "0.9": 0.4802609343670209,
+        "0.95": 0.5358885705016035
+      },
+      "hold_min_median": {
+        "0.05": 11.70876125,
+        "0.1": 16.786810833333334,
+        "0.25": 28.92460416666667,
+        "0.5": 54.29400416666667,
+        "0.75": 105.38420625,
+        "0.9": 153.232885,
+        "0.95": 183.69195666666664
+      },
+      "buy_share": {
+        "0.05": 0.30909090909090914,
+        "0.1": 0.5428947368421053,
+        "0.25": 0.6580459770114943,
+        "0.5": 0.755,
+        "0.75": 0.8410384068278804,
+        "0.9": 0.9194444444444444,
+        "0.95": 1.0
+      },
+      "volume_mean": {
+        "0.05": 0.3703968253968254,
+        "0.1": 0.4712452107279693,
+        "0.25": 0.7078947368421052,
+        "0.5": 2.0171428571428573,
+        "0.75": 9.404398826979472,
+        "0.9": 27.528294117647047,
+        "0.95": 43.04693319838046
+      }
+    },
+    "quarterly": {
+      "pnl_net": {
+        "0.05": -93.22950000000004,
+        "0.1": 0.6249999999999574,
+        "0.25": 374.5375,
+        "0.5": 3102.245,
+        "0.75": 14996.385,
+        "0.9": 42017.075,
+        "0.95": 49454.34949999999
+      },
+      "trades": {
+        "0.05": 34.35,
+        "0.1": 50.8,
+        "0.25": 61.0,
+        "0.5": 67.0,
+        "0.75": 75.25,
+        "0.9": 83.0,
+        "0.95": 84.3
+      },
+      "win_rate": {
+        "0.05": 0.34863387978142074,
+        "0.1": 0.39311475409836066,
+        "0.25": 0.41528468767274734,
+        "0.5": 0.4602860620815581,
+        "0.75": 0.5063348416289593,
+        "0.9": 0.5219603825136613,
+        "0.95": 0.5251319811058628
+      },
+      "expectancy": {
+        "0.05": -2.7496177873693766,
+        "0.1": -0.23951604710228536,
+        "0.25": 6.483867924528301,
+        "0.5": 47.91953076740319,
+        "0.75": 196.18938994565215,
+        "0.9": 503.10060098443967,
+        "0.95": 660.6229617419233
+      },
+      "pnl_std": {
+        "0.05": 47.11105669913214,
+        "0.1": 48.19402082287886,
+        "0.25": 64.62077075881854,
+        "0.5": 228.29378504815483,
+        "0.75": 1256.9712337498722,
+        "0.9": 3755.425562861253,
+        "0.95": 4527.727766132348
+      },
+      "e_sd": {
+        "0.05": -0.023132711810182054,
+        "0.1": 0.004618571589959746,
+        "0.25": 0.08439188800941816,
+        "0.5": 0.17219853543548347,
+        "0.75": 0.2502178941004879,
+        "0.9": 0.3509958187277225,
+        "0.95": 0.38599704278083213
+      },
+      "hold_min_median": {
+        "0.05": 18.688016666666666,
+        "0.1": 23.902458333333335,
+        "0.25": 34.27713125,
+        "0.5": 50.59195,
+        "0.75": 80.75437500000001,
+        "0.9": 119.29526416666668,
+        "0.95": 128.8932120833333
+      },
+      "buy_share": {
+        "0.05": 0.615448343079922,
+        "0.1": 0.6865250475586557,
+        "0.25": 0.7143967661691542,
+        "0.5": 0.7538607745307674,
+        "0.75": 0.8123367198838898,
+        "0.9": 0.8370746268656716,
+        "0.95": 0.8668813559322033
+      },
+      "volume_mean": {
+        "0.05": 0.5387987540628386,
+        "0.1": 0.5499968474148802,
+        "0.25": 0.784456143937845,
+        "0.5": 2.2915741507870755,
+        "0.75": 12.514417665769514,
+        "0.9": 35.6315143034826,
+        "0.95": 46.03825279850746
+      }
+    }
+  },
+  "alert_rules": {
+    "weekly": {
+      "warning": {
+        "trades_min": 4,
+        "pnl_net_min": -121.41500000000002,
+        "win_rate_min": 0.25,
+        "expectancy_min": -22.261666666666663,
+        "e_sd_min": -0.2207076349744507,
+        "pnl_std_max": 763.1265527948774,
+        "hold_min_median_max": 121.90828333333334,
+        "buy_share_min": 0.3333333333333333,
+        "buy_share_max": 1.0,
+        "volume_mean_max": 11.283333333333333,
+        "logic": "Se activa alerta amarilla si 2 o más métricas cruzan umbral warning en una misma semana, o si hay 2 semanas negativas consecutivas."
+      },
+      "critical": {
+        "trades_min": 2,
+        "pnl_net_min": -825.2719999999997,
+        "win_rate_min": 0.0,
+        "expectancy_min": -175.7746666666666,
+        "e_sd_min": -1.553133584504244,
+        "pnl_std_max": 2303.425302273923,
+        "hold_min_median_max": 190.66939333333337,
+        "buy_share_min": 0.0,
+        "buy_share_max": 1.0,
+        "volume_mean_max": 26.89428571428571,
+        "logic": "Se activa alerta roja si 3 o más métricas cruzan umbral critical en una misma semana, o si hay 3 semanas negativas consecutivas."
+      }
+    },
+    "monthly": {
+      "warning": {
+        "trades_min": 20,
+        "pnl_net_min": 52.05250000000001,
+        "win_rate_min": 0.37339901477832516,
+        "expectancy_min": 2.6854241071428575,
+        "e_sd_min": 0.03464157600621264,
+        "pnl_std_max": 1050.4410111213524,
+        "hold_min_median_max": 105.38420625,
+        "buy_share_min": 0.5428947368421053,
+        "buy_share_max": 1.0,
+        "volume_mean_max": 9.404398826979472,
+        "logic": "Se activa alerta amarilla si 2 o más métricas cruzan umbral warning en un mes, o si hay 2 meses con PnL mensual <= 0 dentro de una ventana de 3 meses."
+      },
+      "critical": {
+        "trades_min": 11,
+        "pnl_net_min": -131.90699999999995,
+        "win_rate_min": 0.29888888888888887,
+        "expectancy_min": -9.133256410256408,
+        "e_sd_min": -0.13981723483420527,
+        "pnl_std_max": 2659.3940534983585,
+        "hold_min_median_max": 153.232885,
+        "buy_share_min": 0.30909090909090914,
+        "buy_share_max": 1.0,
+        "volume_mean_max": 27.528294117647047,
+        "logic": "Se activa alerta roja si 3 o más métricas cruzan umbral critical en un mes, o si se registran 2 meses consecutivos con PnL mensual <= 0."
+      }
+    },
+    "quarterly": {
+      "warning": {
+        "trades_min": 61,
+        "pnl_net_min": 374.5375,
+        "win_rate_min": 0.41528468767274734,
+        "expectancy_min": 6.483867924528301,
+        "e_sd_min": 0.08439188800941816,
+        "pnl_std_max": 1256.9712337498722,
+        "hold_min_median_max": 80.75437500000001,
+        "buy_share_min": 0.6865250475586557,
+        "buy_share_max": 0.8668813559322033,
+        "volume_mean_max": 12.514417665769514,
+        "logic": "Se activa alerta amarilla si 2 o más métricas cruzan umbral warning en el trimestre, o si el trimestre cierra con PnL <= 0."
+      },
+      "critical": {
+        "trades_min": 50,
+        "pnl_net_min": 0.6249999999999574,
+        "win_rate_min": 0.39311475409836066,
+        "expectancy_min": -0.23951604710228536,
+        "e_sd_min": 0.004618571589959746,
+        "pnl_std_max": 3755.425562861253,
+        "hold_min_median_max": 119.29526416666668,
+        "buy_share_min": 0.615448343079922,
+        "buy_share_max": 0.8668813559322033,
+        "volume_mean_max": 35.6315143034826,
+        "logic": "Se activa alerta roja si 3 o más métricas cruzan umbral critical en el trimestre, o si el trimestre cierra con PnL trimestral < 0."
+      }
+    }
+  },
+  "ml_drift_thresholds": {
+    "feature_set_weekly": [
+      "expectancy",
+      "win_rate",
+      "pnl_std",
+      "trades",
+      "hold_min_median",
+      "buy_share",
+      "volume_mean"
+    ],
+    "robust_center": {
+      "expectancy": 23.928666666666665,
+      "win_rate": 0.45454545454545453,
+      "pnl_std": 157.74109094678477,
+      "trades": 6.0,
+      "hold_min_median": 60.280745833333334,
+      "buy_share": 0.8,
+      "volume_mean": 2.2533333333333334
+    },
+    "robust_mad": {
+      "expectancy": 68.00020833333332,
+      "win_rate": 0.2121212121212121,
+      "pnl_std": 146.49553807029022,
+      "trades": 2.0,
+      "hold_min_median": 38.411125,
+      "buy_share": 0.19999999999999996,
+      "volume_mean": 1.7776190476190477
+    },
+    "robust_score_warning": 8.438246577648055,
+    "robust_score_critical": 11.020969805510736,
+    "mahalanobis_warning": 3.87274085209327,
+    "mahalanobis_critical": 5.1518376729091795,
+    "psi_warning": 0.2,
+    "psi_critical": 0.35,
+    "logic": "El modelo simple clasifica drift si el vector semanal reciente sale de la nube histórica baseline por score robusto, distancia de Mahalanobis regularizada o PSI sobre distribuciones."
+  },
+  "decision_mapping": {
+    "GREEN": "MANTENER",
+    "YELLOW": "MANTENER_CON_VIGILANCIA o REDUCIR según hard_limits.md",
+    "RED": "PAUSAR o DEJAR_DE_COPIAR según hard_limits.md"
+  }
+}
