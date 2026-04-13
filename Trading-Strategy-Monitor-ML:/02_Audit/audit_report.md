@@ -1,122 +1,116 @@
-# FASE 1 — AUDITORÍA ESTRUCTURAL
+# PHASE 1 — STRUCTURAL AUDIT
 
-## 1. Objetivo
-Auditar la calidad estructural del dataset raw antes de diseñar la normalización.
+## 1. Objective
+Audit the structural quality of the raw dataset before designing the normalization.
 
-## 2. Inputs auditados
-- Dataset principal: `2026-04-02 18-45-49 History - Quantum_us30pepper (US30, m5, True, True, 0, 1, 61.5, 122.5, 9, 15, 7,).csv`
-- Contrato de referencia: `config_block_phase0.json`
+## 2. Audited Inputs
+- Main dataset: `2026-04-02 18-45-49 History - Quantum_us30pepper (US30, m5, True, True, 0, 1, 61.5, 122.5, 9, 15, 7,).csv`
+- Reference contract: `config_block_phase0.json`
 
-## 3. Validación del contrato de entrada
+## 3. Input Contract Validation
 - `case_id`: `2026-04_Quantum_US30_SingleTrader`
-- grano esperado: `1 row = 1 closed trade`
-- columnas esperadas según Fase 0: `16`
-- columnas observadas en el CSV: `16`
-- coincidencia exacta de nombres y orden: **sí**
+- expected grain: `1 row = 1 closed trade`
+- expected columns according to Phase 0: `16`
+- observed columns in the CSV: `16`
+- exact match of names and order: **yes**
 
-## 4. Resultado ejecutivo
-**Decisión de Fase 1:** `ADVANCE_WITH_RESERVATIONS`  
-**Confiabilidad estructural:** ALTA para avanzar a normalización, con reservas documentadas.
+## 4. Executive Result
+**Phase 1 Decision:** `ADVANCE_WITH_RESERVATIONS`  
+**Structural reliability:** HIGH to advance to normalization, with documented reservations.
 
-## 5. Chequeos estructurales principales
+## 5. Main Structural Checks
 
-### 5.1 Integridad básica
-- filas observadas: **1823**
-- columnas observadas: **16**
-- filas duplicadas completas: **0**
-- `ID` duplicados: **0**
-- filas con strings vacíos en cualquier columna: **0 columnas afectadas**
-- columnas con nulos raw (`NaN`): **0 columnas afectadas**
+### 5.1 Basic Integrity
+- observed rows: **1823**
+- observed columns: **16**
+- complete duplicate rows: **0**
+- duplicate `ID`s: **0**
+- rows with empty strings in any column: **0 affected columns**
+- columns with raw nulls (`NaN`): **0 affected columns**
 
-### 5.2 Fechas
-- parseo exitoso `Entry time (UTC+1)`: **1823/1823**
-- parseo exitoso `Closing time (UTC+1)`: **1823/1823**
-- formato validado: **DD/MM/YYYY HH:MM:SS.mmm**
-- cierres anteriores a aperturas: **0**
-- archivo ordenado por `Entry time (UTC+1)`: **sí**
-- archivo ordenado por `Closing time (UTC+1)`: **no**
-- timestamps de cierre duplicados: **117**  
-  Nota: esto no invalida el dataset; indica cierres simultáneos o muy cercanos, por lo que el balance debe interpretarse por cierre y no por el orden raw.
+### 5.2 Dates
+- successful parsing of `Entry time (UTC+1)`: **1823/1823**
+- successful parsing of `Closing time (UTC+1)`: **1823/1823**
+- validated format: **DD/MM/YYYY HH:MM:SS.mmm**
+- closings prior to openings: **0**
+- file sorted by `Entry time (UTC+1)`: **yes**
+- file sorted by `Closing time (UTC+1)`: **no**
+- duplicate closing timestamps: **117** Note: this does not invalidate the dataset; it indicates simultaneous or very close closings, so the balance must be interpreted by closing and not by the raw order.
 
-### 5.3 Campos numéricos y monetarios
-- parseo exitoso `Entry price`: **1823/1823**
-- parseo exitoso `Closing price`: **1823/1823**
-- parseo exitoso `Pips`: **1823/1823**
-- parseo exitoso `Net $`: **1823/1823**
-- parseo exitoso `Gross $`: **1823/1823**
-- parseo exitoso `Balance $` luego de limpieza de texto: **1823/1823**
-- `Balance $` contiene separador NBSP: **sí**
-- `Broker commission` todo cero: **sí**
-- `Swaps` todo cero: **sí**
+### 5.3 Numeric and Monetary Fields
+- successful parsing of `Entry price`: **1823/1823**
+- successful parsing of `Closing price`: **1823/1823**
+- successful parsing of `Pips`: **1823/1823**
+- successful parsing of `Net $`: **1823/1823**
+- successful parsing of `Gross $`: **1823/1823**
+- successful parsing of `Balance $` after text cleaning: **1823/1823**
+- `Balance $` contains NBSP separator: **yes**
+- `Broker commission` all zero: **yes**
+- `Swaps` all zero: **yes**
 
-### 5.4 Coherencia interna entre columnas
-- mismatch numérico `Quantity` vs `Volume`: **0**
+### 5.4 Internal Coherence Between Columns
+- numeric mismatch `Quantity` vs `Volume`: **0**
 - mismatch `Net $` vs `Gross $`: **0**
-- mismatch signo `Pips` vs `Net $`: **0**
-- mismatch precio vs `Pips` en `Buy`: **0**
-- mismatch precio vs `Pips` en `Sell`: **0**
+- sign mismatch `Pips` vs `Net $`: **0**
+- price vs `Pips` mismatch on `Buy`: **0**
+- price vs `Pips` mismatch on `Sell`: **0**
 
-## 6. Separación de columnas por tipo
+## 6. Column Separation by Type
 
-### 6.1 Identificación
+### 6.1 Identification
 - `Label`
 - `Symbol`
 - `Type`
 - `ID`
 
-### 6.2 Ejecución
+### 6.2 Execution
 - `Entry time (UTC+1)`
 - `Entry price`
 - `Closing price`
 - `Closing time (UTC+1)`
 
-### 6.3 Resultado
+### 6.3 Result
 - `Net $`
 - `Pips`
 - `Gross $`
 - `Balance $`
 
-### 6.4 Riesgo / tamaño / costos
+### 6.4 Risk / Size / Costs
 - `Quantity`
 - `Volume`
 - `Broker commission`
 - `Swaps`
 
-## 7. Riesgos y limitaciones detectados
+## 7. Detected Risks and Limitations
 
-### 7.1 Riesgos no bloqueantes
-1. **`trader_id` no existe como columna explícita.**  
-   El caso se comporta como single-trader, pero esa identidad no está materializada dentro de la tabla.
+### 7.1 Non-Blocking Risks
+1. **`trader_id` does not exist as an explicit column.** The case behaves as single-trader, but that identity is not materialized within the table.
 
-2. **Semántica temporal abierta.**  
-   El formato de fecha parsea bien, pero la etiqueta `UTC+1` sigue sin equivalencia formal con Madrid/NY.
+2. **Open temporal semantics.** The date format parses well, but the `UTC+1` label still lacks a formal equivalence with Madrid/NY.
 
-3. **`Balance $` no viene como numérico puro.**  
-   Requiere limpieza de NBSP para casteo confiable.
+3. **`Balance $` does not come as pure numeric.** Requires NBSP cleaning for reliable casting.
 
-4. **El orden raw no sirve para reconstrucción secuencial de balance.**  
-   El archivo está ordenado por apertura, no por cierre. Si se usa `Balance $`, debe respetarse el orden de cierre.
+4. **Raw order is not useful for sequential balance reconstruction.** The file is sorted by opening, not by closing. If `Balance $` is used, the closing order must be respected.
 
-5. **`Net $` y `Gross $` son equivalentes solo en este export.**  
-   No debe asumirse esa equivalencia como regla general del sistema.
+5. **`Net $` and `Gross $` are equivalent only in this export.** This equivalence should not be assumed as a general rule of the system.
 
-### 7.2 Bloqueantes
-**No se detectaron bloqueantes estructurales que impidan pasar a Fase 2.**
+### 7.2 Blocking Risks
+**No structural blockers were detected that prevent moving to Phase 2.**
 
-## 8. Evaluación de confiabilidad
-El dataset es **confiable para avanzar a diseño de normalización**, porque:
-- no tiene nulos raw en columnas críticas
-- no tiene duplicados completos ni `ID` duplicados
-- todas las fechas parsean
-- no hay cierres anteriores a aperturas
-- precios, `Pips`, `Net $` y `Gross $` son coherentes entre sí
-- `Quantity` y `Volume` son consistentes a nivel numérico
+## 8. Reliability Assessment
+The dataset is **reliable to advance to normalization design**, because:
+- it has no raw nulls in critical columns
+- it has no complete duplicates or duplicate `ID`s
+- all dates parse
+- there are no closings prior to openings
+- prices, `Pips`, `Net $`, and `Gross $` are coherent with each other
+- `Quantity` and `Volume` are consistent at a numeric level
 
-La confiabilidad baja solo cuando se intenta enriquecer el caso con:
-- identidad formal del trader
-- semántica exacta de zona horaria
-- join del log secundario
+Reliability drops only when attempting to enrich the case with:
+- formal trader identity
+- exact time zone semantics
+- secondary log join
 
-## 9. Conclusión de Fase 1
-**Resultado:** `ADVANCE_WITH_RESERVATIONS`  
-El raw está estructuralmente sano para pasar a Fase 2, pero con reservas documentadas que deben mantenerse abiertas en el contrato del caso.
+## 9. Phase 1 Conclusion
+**Result:** `ADVANCE_WITH_RESERVATIONS`  
+The raw data is structurally sound to move to Phase 2, but with documented reservations that must remain open in the case contract.
