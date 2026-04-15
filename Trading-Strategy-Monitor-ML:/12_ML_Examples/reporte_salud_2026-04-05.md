@@ -1,180 +1,172 @@
-# Reporte de Salud de la Estrategia
-## Sistema: Quantum_us30pepper — US30
-### Período: 24 marzo – 2 abril 2026
-### Generado: 2026-04-05
+# Strategy Health Report
+## System: Quantum_us30pepper — US30
+### Period: March 24 – April 2, 2026
+### Generated: 2026-04-05
 
 ---
 
-## 1. Resumen de Rendimiento
+## 1. Performance Summary
 
-| Métrica | Período | Baseline histórico |
+| Metric | Period | Historical Baseline |
 |---|---|---|
-| Trades ejecutados | 8 | — |
-| Días operados | 5 | — |
+| Trades executed | 8 | — |
+| Days traded | 5 | — |
 | Wins | 2 (25.0%) | 45.97% |
 | Losses | 6 | — |
-| PnL neto | **−$77.82** | — |
+| Net PnL | **−$77.82** | — |
 | Profit Factor | 0.662 | 1.564 |
 | Avg Win | $76.26 | ~$1,095.94 |
 | Avg Loss | −$38.39 | — |
-| R/trade promedio | −0.238 | +0.375 |
-| Balance inicio período | $3,947.12 | — |
-| Balance cierre período | $3,869.30 | — |
-| DD del período | −1.97% | — |
-| DD desde inicio cuenta ($4,000) | −3.27% | 14.47% máx histórico |
+| Avg R/trade | −0.238 | +0.375 |
+| Start Period Balance | $3,947.12 | — |
+| End Period Balance | $3,869.30 | — |
+| Period DD | −1.97% | — |
+| DD from Start ($4,000) | −3.27% | 14.47% historical max |
 
-**Breakdown por sub-estrategia:**
+**Sub-strategy Breakdown:**
 
-| Estrategia | Trades | Wins | WR período | WR baseline | PnL |
+| Strategy | Trades | Wins | Period WR | Baseline WR | PnL |
 |---|---|---|---|---|---|
 | RRL | 7 | 1 | 14.3% | 47.2% | −$156.18 |
 | LONDON_1B1S | 1 | 1 | 100.0% | 43.5% | +$78.36 |
 
 ---
 
-## 2. Análisis de Desviación — Esperado vs. Real
+## 2. Deviation Analysis — Expected vs. Actual
 
 ### 2.1 Win Rate
 
-| | Valor |
+| | Value |
 |---|---|
-| WR esperado (baseline) | 45.97% |
-| WR observado (período) | 25.0% |
-| Desviación absoluta | −20.97 pp |
-| Test binomial p-valor (unilateral) | 0.204 |
-| ¿Significativo estadísticamente? | **No** |
+| Expected WR (baseline) | 45.97% |
+| Observed WR (period) | 25.0% |
+| Absolute Deviation | −20.97 pp |
+| Binomial test p-value (one-tailed) | 0.204 |
+| Statistically Significant? | **No** |
 
-Con n=8 operaciones, observar 2 o menos wins tiene probabilidad del 20.4% incluso si el sistema opera con su WR histórico normal. La muestra es demasiado pequeña para distinguir entre ruido estadístico y deterioro estructural.
+With n=8 trades, observing 2 or fewer wins has a 20.4% probability even if the system is operating at its normal historical WR. The sample size is too small to distinguish between statistical noise and structural deterioration.
 
-**Interpretación:** desviación dentro del rango de varianza esperada para muestras de 8 trades.
+**Interpretation:** Deviation is within the expected variance range for a sample of 8 trades.
 
-### 2.2 Sub-estrategia RRL
+### 2.2 RRL Sub-strategy
 
-| | Valor |
+| | Value |
 |---|---|
-| WR esperado RRL (baseline) | 47.2% |
-| WR observado RRL | 14.3% (1/7) |
-| Test binomial p-valor (unilateral) | 0.083 |
-| ¿Significativo estadísticamente? | **Borderline** (umbral convencional: 0.05) |
+| Expected RRL WR (baseline) | 47.2% |
+| Observed RRL WR | 14.3% (1/7) |
+| Binomial test p-value (one-tailed) | 0.083 |
+| Statistically Significant? | **Borderline** (conventional threshold: 0.05) |
 
-RRL acumula 7 de los 8 trades del período con solo 1 win. El p-valor de 0.083 es el dato más relevante del período: está por encima del umbral convencional de significancia (α=0.05), pero es lo suficientemente bajo como para no ignorarlo. No confirma deterioro, pero lo señaliza.
+RRL accounts for 7 of the 8 trades in the period with only 1 win. The p-value of 0.083 is the most relevant data point: while above the conventional significance threshold (α=0.05), it is low enough not to be ignored. It does not confirm deterioration but signals it.
 
-### 2.3 R por trade
+### 2.3 R per Trade
 
-| | Valor |
+| | Value |
 |---|---|
-| R esperado por trade | +0.3754 |
-| R observado por trade | −0.2380 |
-| Diferencia | −0.6134 R |
-| Error estándar (n=8) | 0.528 |
+| Expected R per trade | +0.3754 |
+| Observed R per trade | −0.2380 |
+| Difference | −0.6134 R |
+| Standard Error (n=8) | 0.528 |
 | Z-score | −1.16 |
-| p-valor (unilateral) | 0.122 |
-| ¿Significativo estadísticamente? | **No** |
+| p-value (one-tailed) | 0.122 |
+| Statistically Significant? | **No** |
 
-La desviación de R/trade tampoco alcanza significancia estadística con esta muestra. El sistema no ha entrado en pérdida estructural confirmada.
+The R/trade deviation also fails to reach statistical significance with this sample. The system has not entered confirmed structural loss.
 
-### 2.4 Ejecución y calidad operativa
+### 2.4 Execution and Operational Quality
 
-| Métrica | Período | Límite operativo |
+| Metric | Period | Operational Limit |
 |---|---|---|
-| Avg spread | 2.02 pips | máx 3.5 pips |
-| Slippage apertura (signed) | −2.11 pips (favorable) | — |
-| Slippage cierre (signed) | −0.30 pips (favorable) | — |
-| Latencia promedio | 381 ms | — |
-| Evento latencia alta | 857 ms (24/03, único) | — |
+| Avg spread | 2.02 pips | max 3.5 pips |
+| Entry slippage (signed) | −2.11 pips (favorable) | — |
+| Exit slippage (signed) | −0.30 pips (favorable) | — |
+| Avg latency | 381 ms | — |
+| High latency event | 857 ms (24/03, single) | — |
 
-La ejecución es técnicamente sana. El slippage promedio resultó favorable (el broker ejecutó levemente mejor que el precio de referencia en apertura). El spread promedio de 2.02 pips está dentro del límite configurado de 3.5 pips. No se detectan problemas de infraestructura.
+Execution is technically sound. Average slippage was favorable (the broker executed slightly better than the reference price at entry). The average spread of 2.02 pips is well within the 3.5 pip limit. No infrastructure issues were detected.
 
-El evento de latencia aislado (857 ms, 24/03) no afectó el resultado de ese trade (SL hit, −0.50R). No requiere acción.
-
----
-
-## 3. Diagnóstico de Mercado
-
-### 3.1 Evento crítico: Liberation Day — 2 de abril de 2026
-
-El 2 de abril de 2026, la administración Trump anunció aranceles recíprocos globales ("Liberation Day"), generando el mayor shock de volatilidad en US30 desde la pandemia de 2020. El índice sufrió una caída abrupta de aproximadamente 1,500 puntos en la sesión.
-
-**Este evento es relevante para la evaluación del período por tres razones:**
-
-1. **El sistema opera con sesgo BUY dominante (75.5% histórico).** Un evento de caída pronunciada en el índice crea condiciones estructuralmente adversas para la estrategia tal como está calibrada.
-
-2. **El RRL (Range Reversal Logic)** fue el sub-sistema más expuesto: 7 de sus 8 operaciones del período se ejecutaron en condiciones de mercado potencialmente perturbadas por el build-up de tensión previo al anuncio y la caída posterior.
-
-3. **NewsGuard Lite no cubre este evento.** El filtro del bot bloquea NFP, CPI, Powell, Jackson Hole y Michigan Sentiment, pero no tiene regla para eventos de política comercial de esta magnitud. La estrategia operó con exposición total durante y post-anuncio.
-
-### 3.2 Implicación para la interpretación del período
-
-El under-performance del período tiene una explicación de régimen identificable. Esto no invalida el edge histórico, pero sí implica que la estrategia entró en un entorno de mercado que difiere materialmente de su base de entrenamiento (backtest 2019–2026, que incluye pero no overrepresenta episodios de shock unidireccional violento en el índice).
-
-**La hipótesis de trabajo es:** el resultado negativo del período responde principalmente al cambio de régimen inducido por Liberation Day, no a un deterioro interno del edge.
-
-Esta hipótesis no puede confirmarse con 8 trades. Solo puede monitorearse en las semanas siguientes.
+The isolated latency event (857 ms, 24/03) did not affect the outcome of that trade (SL hit, −0.50R). No action required.
 
 ---
 
-## 4. Semáforo de Continuidad Operativa
+## 3. Market Diagnosis
 
-### 🟡 AMARILLO
+### 3.1 Critical Event: Liberation Day — April 2, 2026
 
-**Motivo del color:**
+On April 2, 2026, the Trump administration announced global reciprocal tariffs ("Liberation Day"), generating the largest volatility shock in the US30 since the 2020 pandemic. The index suffered an abrupt drop of approximately 1,500 points during the session.
 
-El sistema presenta under-performance en el período analizado, pero las pruebas estadísticas no alcanzan significancia con n=8. El deterioro no está confirmado como estructural. Sin embargo, la combinación de tres factores impide el verde:
+**This event is relevant for the period evaluation for three reasons:**
 
-- RRL con WR 14.3% en 7 trades y p-valor borderline (0.083) — señal de atención, no de alarma
-- Evento de régimen documentado (Liberation Day, 2/04) que modifica el contexto operativo del sistema
-- Sistema sin filtro para shocks de política comercial: riesgo operativo no cubierto por NewsGuard Lite
+1.  **Dominant BUY bias (75.5% historical):** A sharp index drop creates structurally adverse conditions for the strategy as currently calibrated.
+2.  **RRL Exposure:** 7 of its 8 trades were executed in market conditions potentially disrupted by the pre-announcement tension and the subsequent crash.
+3.  **NewsGuard Lite Gap:** The bot filter blocks NFP, CPI, Powell, Jackson Hole, and Michigan Sentiment, but has no rule for trade policy events of this magnitude. The strategy operated with full exposure during and post-announcement.
 
-**Lo que NO activa el rojo:**
-- DD del período: −1.97% (dentro del rango de varianza normal; hard limit es −10% mensual)
-- DD desde inicio de cuenta: −3.27% (límite de pausa es −20%)
-- Ejecución técnica sana (spread, slippage, latencia)
-- WR global p-valor = 0.204 (no significativo)
-- Z-score R/trade = −1.16 (no significativo)
-- Muestra de 8 trades: insuficiente para confirmar cambio estructural
+### 3.2 Implication for Period Interpretation
+
+The period's underperformance has an identifiable regime-based explanation. This does not invalidate the historical edge, but it implies the strategy entered a market environment that differs materially from its training base (backtest 2019–2026).
+
+**Working Hypothesis:** The negative result for the period primarily responds to the regime shift induced by Liberation Day, not an internal deterioration of the edge. This hypothesis requires monitoring in the coming weeks to be confirmed.
 
 ---
 
-## 5. Decisión Operativa
+## 4. Operational Continuity Status
 
-**MANTENER tamaño actual. NO escalar. Revisar en siguiente ciclo semanal.**
+### 🟡 YELLOW
 
-Acciones concretas:
+**Reason for Status:**
 
-1. **No aumentar el tamaño de posición** en el próximo ciclo. La regla del plan compuesto establece que no se escala mientras el semáforo esté en amarillo.
+The system underperformed during the analyzed period, but statistical tests do not reach significance with n=8. Deterioration is not confirmed as structural. However, three factors prevent a Green status:
 
-2. **Monitorear RRL específicamente** en las próximas 2 semanas. Si RRL mantiene WR < 30% sobre las próximas 10–15 operaciones acumuladas, el p-valor acumulado cruzará el umbral de significancia y corresponderá evaluar una pausa o ajuste de parámetros.
+* RRL with a 14.3% WR and a borderline p-value (0.083) — a signal for attention, not yet alarm.
+* Documented regime event (Liberation Day, 2/04) modifying the operational context.
+* System lacks a filter for trade policy shocks: operational risk not covered by NewsGuard Lite.
 
-3. **Evaluar ampliar NewsGuard Lite** para cubrir eventos de política comercial (anuncios USTR, escaladas arancelarias). Esto requiere una modificación en el código fuente del bot.
-
-4. **Próxima revisión:** semana del 6–11 de abril de 2026. Si el contexto de régimen se normaliza (recuperación parcial del índice, reducción de volatilidad VIX-equivalent) y RRL muestra recuperación, corresponde volver a verde.
+**What is NOT triggering Red:**
+* Period DD: −1.97% (within normal variance; hard limit is −10% monthly).
+* DD since account start: −3.27% (pause limit is −20%).
+* Technically sound execution (spread, slippage, latency).
+* Global WR p-value = 0.204 (not significant).
+* R/trade Z-score = −1.16 (not significant).
 
 ---
 
-## 6. Alertas Abiertas
+## 5. Operational Decision
 
-| Tipo | Descripción | Urgencia |
+**MAINTAIN current size. DO NOT scale. Review in the next weekly cycle.**
+
+Specific Actions:
+
+1.  **Freeze position sizing:** Do not increase size in the next cycle. Per the compound plan rules, scaling is paused while the status is Yellow.
+2.  **Specific RRL Monitoring:** Over the next 2 weeks. If RRL maintains WR < 30% over the next 10–15 accumulated trades, the p-value will cross the significance threshold, requiring a pause or parameter adjustment.
+3.  **Evaluate NewsGuard Lite Expansion:** To cover trade policy events (USTR announcements, tariff escalations). This requires a source code modification.
+4.  **Next Review:** Week of April 6–11, 2026. If the regime context normalizes and RRL shows recovery, return to Green.
+
+---
+
+## 6. Open Alerts
+
+| Type | Description | Urgency |
 |---|---|---|
-| Monitoreo RRL | WR 14.3% en 7 trades, p=0.083 | Alta |
-| Régimen de mercado | Liberation Day — volatilidad elevada post-anuncio | Alta |
-| NewsGuard gap | Sin cobertura para shocks de política comercial | Media |
-| Data quality (heredado) | Warning de timezone y trader_id_surrogate (abierto desde fase de backtest) | Baja |
+| RRL Monitoring | WR 14.3% in 7 trades, p=0.083 | High |
+| Market Regime | Liberation Day — high volatility post-announcement | High |
+| NewsGuard gap | No coverage for trade policy shocks | Medium |
+| Data quality (legacy) | Timezone and trader_id_surrogate warnings (open since backtest) | Low |
 
 ---
 
-## 7. Contexto Acumulado del Plan
+## 7. Accumulated Plan Context
 
-| | Valor |
+| | Value |
 |---|---|
-| Capital inicial plan ($) | $4,000.00 |
-| Balance actual | $3,869.30 |
-| DD acumulado desde inicio | −3.27% |
-| Hard limit de pausa (DD) | −20% desde inicio o −10% mensual |
-| Estado plan compuesto | **No escalar en siguiente ciclo** |
-| Semáforo acumulado | 🟡 AMARILLO |
+| Initial Plan Capital ($) | $4,000.00 |
+| Current Balance | $3,869.30 |
+| Accumulated DD from start | −3.27% |
+| Hard Pause Limit (DD) | −20% total or −10% monthly |
+| Compound Plan Status | **Do not scale in next cycle** |
+| Accumulated Status | 🟡 YELLOW |
 
-El plan de interés compuesto sigue activo. El drawdown acumulado de −3.27% es manejable y no compromete la lógica de escalado. La primera revisión de escalado estaba proyectada al cierre del primer mes de operativa; esa decisión se pospone hasta que el semáforo vuelva a verde.
+The compound interest plan remains active. The accumulated drawdown of −3.27% is manageable and does not compromise the scaling logic. The first scaling review projected for month-end is postponed until the status returns to Green.
 
 ---
 
-*Reporte generado automáticamente sobre datos reales de broker (cT_1329775_2026-04-05_09-50.csv) y log operativo (2026-04-05_09-43 - Quantum_us30pepper, Instance 926220.log). Baseline: 2026-04_Quantum_US30_SingleTrader (1823 trades, agosto 2019 – abril 2026).*
+*Report automatically generated based on actual broker data (cT_1329775_2026-04-05_09-50.csv) and operational log (2026-04-05_09-43 - Quantum_us30pepper, Instance 926220.log). Baseline: 2026-04_Quantum_US30_SingleTrader (1823 trades, Aug 2019 – April 2026).*
