@@ -1,163 +1,163 @@
-# FASE 2 — DISEÑO DE NORMALIZACIÓN
+# PHASE 2 — NORMALIZATION DESIGN
 
-## 1. Objetivo
-Definir el diseño lógico para transformar el dataset raw del caso `2026-04_Quantum_US30_SingleTrader` a un esquema canónico reutilizable, sin ejecutar todavía la limpieza ni modificar el archivo fuente.
+## 1. Objective
+Define the logical design to transform the raw dataset of the `2026-04_Quantum_US30_SingleTrader` case into a reusable canonical schema, without executing the cleaning or modifying the source file yet.
 
-## 2. Inputs utilizados
+## 2. Inputs Used
 - `config_block_phase0.json`
 - `audit_report.md`
 - `detected_columns.csv`
-- contexto validado de Fase 0 y Fase 1
+- validated context from Phase 0 and Phase 1
 
-## 3. Decisión de diseño
-Se define un **esquema canónico mínimo** orientado a análisis de trades cerrados, manteniendo trazabilidad hacia el raw.
+## 3. Design Decision
+A **minimum canonical schema** oriented to closed trades analysis is defined, maintaining traceability back to the raw data.
 
-Este diseño **no asume** semánticas no confirmadas. Por eso:
-- `trader_id` se define como **surrogate case-level** mientras no exista identificador nativo por fila.
-- `open_time` y `close_time` se parsean con el formato validado, pero **sin conversión de zona horaria** mientras siga abierta la ambigüedad de `UTC+1`.
-- `volume` se construye desde `Quantity` con validación cruzada contra `Volume`, porque ambas columnas fueron confirmadas como solapadas.
-- `pnl_net` se toma desde `Net $`; `Gross $` queda como soporte de trazabilidad, no como fuente principal.
+This design **does not assume** unconfirmed semantics. Therefore:
+- `trader_id` is defined as a **case-level surrogate** as long as there is no native row-level identifier.
+- `open_time` and `close_time` are parsed with the validated format, but **without time zone conversion** as long as the `UTC+1` ambiguity remains open.
+- `volume` is built from `Quantity` with cross-validation against `Volume`, because both columns were confirmed as overlapping.
+- `pnl_net` is taken from `Net $`; `Gross $` remains as traceability support, not as a primary source.
 
-## 4. Esquema canónico mínimo
+## 4. Minimum Canonical Schema
 
-| canonical_field | requerido | origen lógico | tipo objetivo | regla principal |
+| canonical_field | required | logical origin | target type | main rule |
 |---|---:|---|---|---|
-| trader_id | sí | derivado del caso | string | surrogate temporal a nivel caso |
-| symbol | sí | `Symbol` | string | trim + uppercase |
-| side | sí | `Type` | string | `Buy→BUY`, `Sell→SELL` |
-| open_time | sí | `Entry time (UTC+1)` | datetime | parse `%d/%m/%Y %H:%M:%S.%f` sin conversión TZ |
-| close_time | sí | `Closing time (UTC+1)` | datetime | parse `%d/%m/%Y %H:%M:%S.%f` sin conversión TZ |
-| volume | sí | `Quantity` (+ cross-check `Volume`) | decimal | extraer payload numérico de tamaño |
-| entry_price | sí | `Entry price` | decimal | casteo numérico directo |
-| exit_price | sí | `Closing price` | decimal | casteo numérico directo |
-| pnl_net | sí | `Net $` | decimal | limpieza monetaria + casteo numérico |
+| trader_id | yes | derived from case | string | case-level temporal surrogate |
+| symbol | yes | `Symbol` | string | trim + uppercase |
+| side | yes | `Type` | string | `Buy→BUY`, `Sell→SELL` |
+| open_time | yes | `Entry time (UTC+1)` | datetime | parse `%d/%m/%Y %H:%M:%S.%f` without TZ conversion |
+| close_time | yes | `Closing time (UTC+1)` | datetime | parse `%d/%m/%Y %H:%M:%S.%f` without TZ conversion |
+| volume | yes | `Quantity` (+ cross-check `Volume`) | decimal | extract numerical size payload |
+| entry_price | yes | `Entry price` | decimal | direct numerical casting |
+| exit_price | yes | `Closing price` | decimal | direct numerical casting |
+| pnl_net | yes | `Net $` | decimal | monetary cleaning + numerical casting |
 
-## 5. Campos de soporte recomendados para trazabilidad
-Estos campos no reemplazan al mínimo canónico, pero deben preservarse en Fase 4 para no perder auditabilidad:
+## 5. Recommended Support Fields for Traceability
+These fields do not replace the minimum canonical schema, but must be preserved in Phase 4 to avoid losing auditability:
 
-| support_field | source_column | motivo |
+| support_field | source_column | reason |
 |---|---|---|
-| trade_id | `ID` | trazabilidad por fila y futura validación de joins |
-| strategy_label | `Label` | segmentación por subestrategia (`LONDON_1B1S`, `RRL`) |
-| pnl_gross | `Gross $` | control de coherencia y compatibilidad con otros exports |
-| pips | `Pips` | análisis operativo y chequeos de coherencia |
-| balance_after_trade | `Balance $` | referencia de equity por cierre, no secuencial raw |
-| broker_commission | `Broker commission` | compatibilidad futura con exports con costos |
-| swaps | `Swaps` | compatibilidad futura con exports con costos |
-| volume_alt_raw | `Volume` | validación cruzada de tamaño |
+| trade_id | `ID` | row-level traceability and future join validation |
+| strategy_label | `Label` | segmentation by sub-strategy (`LONDON_1B1S`, `RRL`) |
+| pnl_gross | `Gross $` | coherence control and compatibility with other exports |
+| pips | `Pips` | operational analysis and coherence checks |
+| balance_after_trade | `Balance $` | equity reference by closing, not sequential raw |
+| broker_commission | `Broker commission` | future compatibility with exports containing costs |
+| swaps | `Swaps` | future compatibility with exports containing costs |
+| volume_alt_raw | `Volume` | size cross-validation |
 
-## 6. Reglas de normalización
+## 6. Normalization Rules
 
 ### 6.1 `trader_id`
-- No existe columna nativa en el raw.
-- Para este caso single-trader, el valor canónico se define como surrogate temporal derivado del caso: `2026-04_Quantum_US30_SingleTrader`.
-- Estado: **WARN estructural**, no `ERROR`, porque el caso fue validado como single-trader.
-- Restricción: no reutilizar esta regla en datasets multi-trader sin una clave explícita.
+- No native column exists in the raw data.
+- For this single-trader case, the canonical value is defined as a temporal surrogate derived from the case: `2026-04_Quantum_US30_SingleTrader`.
+- Status: **structural WARN**, not `ERROR`, because the case was validated as single-trader.
+- Restriction: do not reuse this rule in multi-trader datasets without an explicit key.
 
 ### 6.2 `symbol`
-- Fuente: `Symbol`.
-- Regla: `trim` + `uppercase`.
-- En este caso se detectó solo `US30`.
-- Si en otro caso el símbolo queda vacío o no parseable → `ERROR`.
+- Source: `Symbol`.
+- Rule: `trim` + `uppercase`.
+- In this case, only `US30` was detected.
+- If in another case the symbol is empty or unparseable → `ERROR`.
 
 ### 6.3 `side`
-- Fuente: `Type`.
-- Diccionario permitido:
+- Source: `Type`.
+- Allowed dictionary:
   - `Buy` → `BUY`
   - `Sell` → `SELL`
-- Cualquier valor fuera de ese dominio → `ERROR`.
+- Any value outside this domain → `ERROR`.
 
-### 6.4 `open_time` y `close_time`
-- Fuentes: `Entry time (UTC+1)` y `Closing time (UTC+1)`.
-- Formato validado: `%d/%m/%Y %H:%M:%S.%f`.
-- Regla: parsear a datetime preservando el reloj observado en el raw.
-- Regla explícita: **no convertir a UTC, Madrid o New York** en Fase 4 mientras siga abierta la ambigüedad de la etiqueta `UTC+1`.
-- Validación mínima:
-  - parse exitoso obligatorio
+### 6.4 `open_time` and `close_time`
+- Sources: `Entry time (UTC+1)` and `Closing time (UTC+1)`.
+- Validated format: `%d/%m/%Y %H:%M:%S.%f`.
+- Rule: parse to datetime preserving the clock observed in the raw data.
+- Explicit rule: **do not convert to UTC, Madrid, or New York** in Phase 4 as long as the ambiguity of the `UTC+1` label remains open.
+- Minimum validation:
+  - successful parse is mandatory
   - `close_time >= open_time`
-- Estado del caso: **WARN de metadata temporal** hasta validar semántica contra log.
+- Case status: **temporal metadata WARN** until semantic validation against the log.
 
 ### 6.5 `volume`
-- Fuente primaria: `Quantity`.
-- Fuente secundaria de control: `Volume`.
-- Regla: extraer el componente numérico del texto y almacenarlo como decimal canónico de tamaño.
-- Condición de calidad:
-  - si `Quantity_num == Volume_num` → continuar
-  - si no coinciden → `ERROR`
-- Motivo de prioridad sobre `Volume`: mantener una sola fuente primaria y usar la columna solapada como control de calidad.
-- Nota: esta fase **no infiere** contrato, lot size ni multiplicador monetario.
+- Primary source: `Quantity`.
+- Secondary control source: `Volume`.
+- Rule: extract the numerical component from the text and store it as a canonical size decimal.
+- Quality condition:
+  - if `Quantity_num == Volume_num` → continue
+  - if they do not match → `ERROR`
+- Reason for priority over `Volume`: maintain a single primary source and use the overlapping column for quality control.
+- Note: this phase **does not infer** contract, lot size, or monetary multiplier.
 
-### 6.6 `entry_price` y `exit_price`
-- Fuentes: `Entry price` y `Closing price`.
-- Regla: casteo numérico directo a decimal.
-- Si no parsea → `ERROR`.
+### 6.6 `entry_price` and `exit_price`
+- Sources: `Entry price` and `Closing price`.
+- Rule: direct numerical casting to decimal.
+- If it does not parse → `ERROR`.
 
 ### 6.7 `pnl_net`
-- Fuente primaria: `Net $`.
-- Regla: limpiar separadores/espacios no estándar y convertir a decimal firmado.
-- `Gross $` se preserva como soporte, pero no reemplaza a `Net $` como fuente principal.
-- Nota de alcance: en este export `Net $ = Gross $` porque `Broker commission = 0` y `Swaps = 0`; esta equivalencia **no se generaliza** al sistema.
+- Primary source: `Net $`.
+- Rule: clean non-standard separators/spaces and convert to signed decimal.
+- `Gross $` is preserved as support, but does not replace `Net $` as the primary source.
+- Scope note: in this export `Net $ = Gross $` because `Broker commission = 0` and `Swaps = 0`; this equivalence **is not generalized** to the system.
 
 ### 6.8 `Balance $`
-- No entra al mínimo canónico.
-- Se preserva como `balance_after_trade` de soporte.
-- Requiere limpieza de NBSP antes de casteo.
-- No puede interpretarse secuencialmente en el orden raw; cualquier uso analítico deberá respetar orden por `close_time`.
+- Does not enter the minimum canonical schema.
+- Is preserved as support `balance_after_trade`.
+- Requires NBSP cleaning before casting.
+- Cannot be interpreted sequentially in raw order; any analytical use must respect closing order (`close_time`).
 
-## 7. Definición de `quality_flag`
+## 7. Quality Flag Definition
 
 ### 7.1 `OK`
-Asignar `OK` cuando:
-- todas las columnas canónicas mínimas existen
-- `side` pertenece al dominio permitido
-- `open_time` y `close_time` parsean
+Assign `OK` when:
+- all minimum canonical columns exist
+- `side` belongs to the allowed domain
+- `open_time` and `close_time` parse
 - `close_time >= open_time`
-- `volume` parsea y pasa cross-check `Quantity` vs `Volume`
-- `entry_price`, `exit_price` y `pnl_net` parsean
-- no hay contradicciones de mapping en la fila
-- no depende de warnings estructurales abiertos
+- `volume` parses and passes `Quantity` vs `Volume` cross-check
+- `entry_price`, `exit_price`, and `pnl_net` parse
+- there are no mapping contradictions in the row
+- it does not depend on open structural warnings
 
 ### 7.2 `WARN`
-Asignar `WARN` cuando la fila es usable pero queda afectada por advertencias abiertas del caso. Para este caso, las dos fuentes principales de `WARN` son:
-- `trader_id` derivado del caso y no nativo por fila
-- timestamps parseados pero con semántica de zona horaria todavía no validada
+Assign `WARN` when the row is usable but affected by open case warnings. For this case, the two main sources of `WARN` are:
+- `trader_id` derived from the case and not native per row
+- parsed timestamps but with unvalidated time zone semantics
 
 ### 7.3 `ERROR`
-Asignar `ERROR` cuando ocurra cualquiera de estas condiciones:
-- falta una columna mínima requerida
-- falla el parseo de fecha, precio, volumen o `pnl_net`
-- `side` no pertenece al dominio permitido
+Assign `ERROR` when any of these conditions occur:
+- a required minimum column is missing
+- parsing of date, price, volume, or `pnl_net` fails
+- `side` does not belong to the allowed domain
 - `close_time < open_time`
-- `Quantity` y `Volume` no coinciden tras normalización numérica
-- `Symbol` queda vacío o no interpretable
+- `Quantity` and `Volume` do not match after numerical normalization
+- `Symbol` is empty or uninterpretable
 
-## 8. Bloqueantes y ambigüedades activas
+## 8. Active Blockers and Ambiguities
 
-### 8.1 Bloqueantes críticos abiertos
-1. **`trader_id` nativo ausente**
-   - El mapping existe, pero depende de surrogate case-level.
-   - Impacto: el diseño es válido para single-trader; no es portable a multi-trader sin ajuste.
+### 8.1 Open Critical Blockers
+1. **Missing native `trader_id`**
+   - Mapping exists, but depends on a case-level surrogate.
+   - Impact: the design is valid for single-trader; it is not portable to multi-trader without adjustment.
 
-2. **Semántica temporal no cerrada**
-   - Se conoce el formato, pero no está cerrada la equivalencia operativa de `UTC+1` respecto de UTC/Madrid/NY.
-   - Impacto: no se debe convertir ni unir contra log con base temporal fuerte hasta validación.
+2. **Unclosed temporal semantics**
+   - The format is known, but the operational equivalence of `UTC+1` with respect to UTC/Madrid/NY is not closed.
+   - Impact: must not be converted or joined against the log with a strong temporal base until validation.
 
-### 8.2 Riesgos no bloqueantes
-1. `ID` vs `posId` sigue sin regla de join validada.
-2. `Net $` y `Gross $` equivalen solo en este export.
-3. `Balance $` requiere limpieza de texto y orden por cierre para análisis secuencial.
+### 8.2 Non-Blocking Risks
+1. `ID` vs `posId` still lacks a validated join rule.
+2. `Net $` and `Gross $` are equivalent only in this export.
+3. `Balance $` requires text cleaning and order by closing for sequential analysis.
 
-## 9. Decisión de Fase 2
-**Resultado:** `ADVANCE_TO_PHASE_3_WITH_RESERVATIONS`
+## 9. Phase 2 Decision
+**Result:** `ADVANCE_TO_PHASE_3_WITH_RESERVATIONS`
 
-La fase queda cerrada como **diseño lógico válido**, pero no como diseño libre de ambigüedades. El mapping mínimo está definido y es utilizable para Fase 3, siempre que se mantengan activas las advertencias de:
-- `trader_id` surrogate
-- semántica temporal
-- join con log
+The phase is closed as a **valid logical design**, but not as an ambiguity-free design. The minimum mapping is defined and usable for Phase 3, provided that the following warnings remain active:
+- surrogate `trader_id`
+- temporal semantics
+- join with log
 
-## 10. Alcance explícito de esta fase
-- Sí define contrato canónico y reglas de transformación.
-- Sí define `quality_flag`.
-- No ejecuta limpieza.
-- No resuelve joins con el log.
-- No valida timezone a nivel operacional.
+## 10. Explicit Scope of This Phase
+- It does define canonical contract and transformation rules.
+- It does define `quality_flag`.
+- It does not execute cleaning.
+- It does not resolve joins with the log.
+- It does not validate timezone at the operational level.
