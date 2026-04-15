@@ -1,31 +1,31 @@
-# FASE 0 — Intake Summary — Backtest personal US30
+# PHASE 0 — Intake Summary — Personal Backtest US30
 
-## 1. Archivos detectados
+## 1. Detected Files
 1. **2026-04-02 18-45-49 History - Quantum_us30pepper (US30, m5, True, True, 0, 1, 61.5, 122.5, 9, 15, 7,).csv**
-   - Rol detectado: tabla principal
-   - Formato: CSV
-   - Grano detectado: **1 fila = 1 trade cerrado**
-   - Dimensión: **1823 filas x 16 columnas**
+   - Detected role: main table
+   - Format: CSV
+   - Detected grain: **1 row = 1 closed trade**
+   - Dimension: **1823 rows x 16 columns**
 
 2. **log.txt**
-   - Rol detectado: archivo secundario de soporte
-   - Formato: TXT
-   - Contiene tres esquemas embebidos tipo CSV:
+   - Detected role: secondary support file
+   - Format: TXT
+   - Contains three embedded CSV-type schemas:
      - `OPEN_CSV`
      - `CLOSE_CSV`
      - `DAY_SUMMARY`
 
-## 2. Tabla principal detectada
-La tabla principal del caso es el archivo:
+## 2. Detected Main Table
+The main table of the case is the file:
 
 `2026-04-02 18-45-49 History - Quantum_us30pepper (US30, m5, True, True, 0, 1, 61.5, 122.5, 9, 15, 7,).csv`
 
-Motivo:
-- tiene estructura tabular directa
-- cada fila representa una operación cerrada
-- contiene precios de entrada y salida, timestamps, resultado monetario, pips, balance e identificador de trade
+Reason:
+- has a direct tabular structure
+- each row represents a closed trade
+- contains entry and exit prices, timestamps, monetary result, pips, balance, and trade identifier
 
-## 3. Columnas detectadas en la tabla principal
+## 3. Detected Columns in the Main Table
 1. `Label`
 2. `Entry time (UTC+1)`
 3. `Symbol`
@@ -43,79 +43,79 @@ Motivo:
 15. `Balance $`
 16. `ID`
 
-## 4. Equivalencias y solapamientos detectados
+## 4. Detected Equivalences and Overlaps
 - **`Quantity` ↔ `Volume`**
-  - ambas columnas representan tamaño de posición en texto
-  - cambian la etiqueta de unidad (`Lots` vs `Indices`)
-  - no deben tratarse como métricas independientes
+  - both columns represent position size in text
+  - they change the unit label (`Lots` vs `Indices`)
+  - should not be treated as independent metrics
 
 - **`Net $` ↔ `Gross $`**
-  - en este export son equivalentes en todas las filas observadas
-  - esto ocurre porque `Broker commission = 0` y `Swaps = 0` en todas las filas
-  - siguen siendo columnas conceptualmente distintas
+  - in this export they are equivalent in all observed rows
+  - this occurs because `Broker commission = 0` and `Swaps = 0` in all rows
+  - they remain conceptually distinct columns
 
-## 5. Campos críticos detectados
-- **PnL / resultado:** `Net $`, `Gross $`, `Pips`, `Balance $`
-- **Fechas:** `Entry time (UTC+1)`, `Closing time (UTC+1)`
-- **Volumen / size:** `Quantity`, `Volume`
-- **Instrumento:** `Symbol`
+## 5. Detected Critical Fields
+- **PnL / result:** `Net $`, `Gross $`, `Pips`, `Balance $`
+- **Dates:** `Entry time (UTC+1)`, `Closing time (UTC+1)`
+- **Volume / size:** `Quantity`, `Volume`
+- **Instrument:** `Symbol`
 - **Trade ID:** `ID`
-- **Trader:** **no existe columna explícita**
+- **Trader:** **no explicit column exists**
 
-## 6. Problemas estructurales detectados
-### 6.1 No hay `trader_id` dentro de la tabla
-El archivo funciona como dataset de **un solo trader**, pero eso está dado por contexto de archivo/log y no por una columna formal.
+## 6. Detected Structural Problems
+### 6.1 No `trader_id` within the table
+The file functions as a **single-trader** dataset, but that is given by the file/log context and not by a formal column.
 
-### 6.2 Riesgo temporal
-Las fechas del CSV parsean correctamente con formato:
+### 6.2 Temporal Risk
+The CSV dates parse correctly with format:
 
 `DD/MM/YYYY HH:MM:SS.mmm`
 
-Pero el encabezado usa `UTC+1` fijo, mientras el log además reporta `Madrid` y `NY` con ajuste horario real.  
-Conclusión: **no se puede asumir que `UTC+1` = Madrid local**.
+But the header uses a fixed `UTC+1`, while the log also reports `Madrid` and `NY` with a real time adjustment.  
+Conclusion: **it cannot be assumed that `UTC+1` = local Madrid**.
 
-### 6.3 Campos monetarios como texto
+### 6.3 Monetary Fields as Text
 - `Net $`
 - `Gross $`
 - `Balance $`
 
-No vienen como numéricos puros.  
-`Balance $` además contiene separador de miles con **non-breaking space**.
+They do not come as pure numerics.  
+`Balance $` also contains a thousands separator with a **non-breaking space**.
 
-### 6.4 Log enriquecido sin join validado
-El log aporta slippage, latency, `risk$`, `resultR`, `durationMin`, `sessionTag` y resúmenes diarios.  
-Pero:
-- el CSV usa `ID`
-- el log usa `posId`
+### 6.4 Enriched log without validated join
+The log provides slippage, latency, `risk$`, `resultR`, `durationMin`, `sessionTag`, and daily summaries.  
+But:
+- the CSV uses `ID`
+- the log uses `posId`
 
-No hay equivalencia directa validada en esta fase.
+There is no direct validated equivalence in this phase.
 
-## 7. Chequeos estructurales básicos
-- filas duplicadas completas: **0**
-- `ID` duplicados: **0**
-- filas totalmente vacías: **0**
-- headers repetidos dentro del CSV: **no detectados**
-- parseo de fechas de entrada exitoso: **1823/1823**
-- parseo de fechas de cierre exitoso: **1823/1823**
-- trades con cierre anterior a apertura: **0**
+## 7. Basic Structural Checks
+- complete duplicate rows: **0**
+- duplicate `ID`s: **0**
+- completely empty rows: **0**
+- repeated headers within the CSV: **not detected**
+- successful parsing of entry dates: **1823/1823**
+- successful parsing of closing dates: **1823/1823**
+- trades with closing prior to opening: **0**
 
-## 8. Hallazgos de contexto operativo
-- símbolo único detectado: **US30**
-- etiquetas/estrategias detectadas: **LONDON_1B1S, RRL**
-- lados detectados: **Buy, Sell**
-- rango temporal detectado:
-  - apertura mínima: **2019-08-01 14:50:43.720000**
-  - apertura máxima: **2026-04-02 16:35:00.110000**
-  - cierre mínimo: **2019-08-01 15:48:40.466000**
-  - cierre máximo: **2026-04-02 16:42:48.236000**
+## 8. Operational Context Findings
+- unique symbol detected: **US30**
+- detected labels/strategies: **LONDON_1B1S, RRL**
+- detected sides: **Buy, Sell**
+- detected time range:
+  - minimum opening: **2019-08-01 14:50:43.720000**
+  - maximum opening: **2026-04-02 16:35:00.110000**
+  - minimum closing: **2019-08-01 15:48:40.466000**
+  - maximum closing: **2026-04-02 16:42:48.236000**
 
-## 9. Estado de la fase
-**Resultado:** dataset apto para avanzar a **FASE 1 — AUDITORÍA ESTRUCTURAL**, pero con reservas explícitas.
+## 9. Phase Status
+**Result:** dataset suitable to advance to **PHASE 1 — STRUCTURAL AUDIT**, but with explicit reservations.
 
-### Reservas activas
-1. Falta `trader_id` explícito.
-2. Falta política temporal formal para `UTC+1` vs Madrid/NY.
-3. Falta regla de join formal entre CSV y log.
+### Active Reservations
+1. Missing explicit `trader_id`.
+2. Missing formal temporal policy for `UTC+1` vs Madrid/NY.
+3. Missing formal join rule between CSV and log.
 
-### Decisión
+### Decision
 **ADVANCE_TO_PHASE_1_WITH_RESERVATIONS**
